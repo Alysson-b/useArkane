@@ -1,10 +1,15 @@
-import { User } from "../types/user"
+import { completar_cadastroDTO, User } from "../types/user"
 import { api } from "./api"
 
 
 export async function getUsuarios(): Promise<User[]> {
     const {data} = await api.get("/api/users")
     return  data
+}
+
+export async function completarCadastro(data: completar_cadastroDTO): Promise<{ mensagem: string }> {
+    const response = await api.post("/api/users/profile", data)
+    return  response.data
 }
 
 export async function editarUsuarios(): Promise<User> {

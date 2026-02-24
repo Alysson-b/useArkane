@@ -19,7 +19,8 @@ export const ContainerCadastroStyled = styled.div`
     
   }
 
-  input {
+  input
+  {
     width: 100%;
     padding: 13px 16px;
     border-radius: 10px;
@@ -50,6 +51,17 @@ export const ContainerCadastroStyled = styled.div`
       background: #fff;
       box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
     }
+  }
+  select{
+    padding: 13px 20px;
+    border-radius: 10px;
+    border: 1.5px solid #e4e4e7;
+    background: #fafafa;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 450;
+    color: #18181b;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
   }
 
     button {
