@@ -10,7 +10,7 @@ export interface Product{
     descricao: string,
     image_url: string
     categoria: string,
-    variacoes: VariacaoProduto[]
+    variacao: VariacaoProduto[]
 }
 
 
