@@ -7,6 +7,7 @@ import front_card from "../../../public/assets/frontCard.png"
 import back_card from "../../../public/assets/back_card.png"
 import Button from "../common/Button";
 import { DadosCep } from "../../types/product";
+import { getPerfilCompleto } from "../../services/usuarios.services";
 
 
 function Pagamentos() {
@@ -40,7 +41,7 @@ function Pagamentos() {
 
     const calcularTotal = () => {
         return items.reduce((total, item) => {
-            const variacao = item.product.variacao.find(
+            const variacao = item.product.variacoes.find(
                 (v) => v.tamanho === item.tamanho && v.cor === item.cor,
             );
             
@@ -53,18 +54,19 @@ function Pagamentos() {
     const total = calcularTotal()
     const pix = calcularTotal() * 0.95
 
-    function verificarusuario(){
+    async function verificarusuario(){
         const usuarioLogado = localStorage.getItem("token");
         
-
         if(!usuarioLogado){
             toast.error("Voçe precisa loga-se para Finalizar o Pedido !!", {position: "top-right", className: "toast-message"})
             return;
         }
-
-       
-        setView("pagamento")
-        
+        const perfilVerificado = await getPerfilCompleto()
+        if(perfilVerificado){
+            setView("pagamento")
+        }else{
+            toast("complete seu cadastro")
+        }
     }
 
     async function calcularFrete() {

@@ -99,8 +99,8 @@ function ModalAdmin() {
             setDescricao(data.descricao);
             setCategoria(data.categoria);
             setImageUrl(data.image_url);
-            setVariacoes(data.variacao || []);
-            console.log("STATE variacoes:", data.variacao);
+            setVariacoes(data.variacoes || []);
+            console.log("STATE variacoes:", data.variacoes);
         } catch (err) {
             toast.error("Error ao carregar produto");
         }
@@ -150,7 +150,7 @@ function ModalAdmin() {
             descricao,
             image_url: imageUrl,
             categoria,
-            variacao: variacoesParaEnviar
+            variacoes: variacoesParaEnviar
         }
             await updateProducts(id, produtoAtualizado)
 

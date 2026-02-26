@@ -7,6 +7,7 @@ import Pagamentos from "./Pagamentos"
 
 function CartPage() {
     const { items, addItem, removeItem, diminuirQuantidade } = useCart()
+
     const aumentarQuantidade = (productId: string, tamanho?: string, cor?: string) => {
         const item = items.find(i => 
             i.product.id === productId &&
@@ -33,6 +34,8 @@ function CartPage() {
                     ) : (
                         <>
                             {items.map((item) => (
+
+                                
                                 <CartItem key={item.product.id}>
                                 <div className="inforCart">
 
@@ -64,9 +67,9 @@ function CartPage() {
                                 </div>
 
                                     <div className="valorPag">
-                                        <h3 className="precoTotal">R$ {(Number(item.product.variacao[0].preco) * item.quantidade).toFixed(2)}</h3>
+                                        <h3 className="precoTotal">R$ {(Number(item.product.variacoes[0].preco) * item.quantidade).toFixed(2)}</h3>
                                         <br />
-                                        <p>R$ {(Number(item.product.variacao[0].preco) * item.quantidade * 0.95).toFixed(2)} No PIX ( -5% )</p>
+                                        <p>R$ {(Number(item.product.variacoes[0].preco) * item.quantidade * 0.95).toFixed(2)} No PIX ( -5% )</p>
                                     </div>
                                 </CartItem>
                             ))}
