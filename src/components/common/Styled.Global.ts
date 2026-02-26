@@ -14,6 +14,7 @@ export const Overlay = styled.div`
     z-index: 1000;
     overflow: hidden;
     
+    
     .close{
         position: absolute;
         display: flex;
@@ -35,7 +36,7 @@ export const Overlay = styled.div`
 `;
 export const LoginContainer = styled.div`
     padding: 2rem;
-    width: 450px;
+    width: 500px;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     display: flex;
@@ -47,9 +48,10 @@ export const LoginContainer = styled.div`
         content: "";
         position: absolute;
         inset: 0;
-        background: url("../../../../public/assets/Logo.png") no-repeat center / cover ;
+        background: url("../../../../public/assets/background.png") no-repeat center / cover ;
         opacity: 0.1;
         z-index: -1;
+        border-radius: 12px;
     }
     
 
@@ -62,11 +64,12 @@ export const LoginContainer = styled.div`
         font-family: "Montserrat", sans-serif;
         font-size: 1.3em;
         font-weight: 700;
-        color: #ffffffff;
-        margin-bottom: 2rem;
+        color: rgb(0, 0, 0);
+        margin-bottom: 3rem;
         display: flex;
         align-items: center;
         justify-content: center;
+        letter-spacing: 4px;
     }
 
     input {
@@ -92,16 +95,16 @@ export const LoginContainer = styled.div`
         margin-bottom: 0.5rem;
         border: none;
         border-radius: 8px;
-        background-color: #000000be;
-        color: #fcfafaff;
+        background-color: #000000dc;
+        color: rgb(255, 255, 255);
         font-weight: 600;
         cursor: pointer;
         transition: all 0.5s ease-in-out;
 
         &:hover {
-        background-color: #ffffffdc;
-        color: #030303ff;
-        transform: translateY(2px);
+        background-color: #000000;
+        color: rgb(255, 255, 255);
+        
         }
     }
 
@@ -120,7 +123,7 @@ export const LoginContainer = styled.div`
                 transition: 0.3s ease-in-out;
 
                 &:hover{
-                    color: #647ff7;
+                    color: #000000;
 
                 }
 
@@ -142,9 +145,10 @@ export const CadastroContainer = styled.div`
         content: "";
         position: absolute;
         inset: 0;
-        background: url("../../../../public/assets/Logo.png") no-repeat center / cover ;
+        background: url("../../../../public/assets/background.png") no-repeat center / cover ;
         opacity: 0.1;
         z-index: -1;
+        border-radius: 12px;
     }
 
 
@@ -157,11 +161,12 @@ export const CadastroContainer = styled.div`
         font-family: "Montserrat", sans-serif;
         font-size: 1.3em;
         font-weight: 700;
-        color: #ffffffff;
+        color: rgb(0, 0, 0);
         margin-bottom: 2rem;
         display: flex;
         align-items: center;
         justify-content: center;
+        letter-spacing: 4px;
     }
 
     input {
@@ -187,16 +192,16 @@ export const CadastroContainer = styled.div`
         margin-bottom: 0.5rem;
         border: none;
         border-radius: 8px;
-        background-color: #000000ff;
+        background-color: rgba(0, 0, 0, 0.91);
         color: #fff;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.5s ease-in-out;
 
         &:hover {
-        background-color: #ffffffff;
-        color: #000000ff;
-        transform: translateY(2px);
+        background-color: rgb(0, 0, 0);
+        color: rgb(255, 255, 255);
+        
         }
     }
     .href{
@@ -214,7 +219,7 @@ export const CadastroContainer = styled.div`
                 transition: 0.3s ease-in-out;
 
                 &:hover{
-                    color: #647ff7;
+                    color: #000000;
 
                 }
 
@@ -236,9 +241,10 @@ export const RecuperarSenha = styled.div`
         content: "";
         position: absolute;
         inset: 0;
-        background: url("../../../../public/assets/Logo.png") no-repeat center / cover ;
+        background: url("../../../../public/assets/background.png") no-repeat center / cover ;
         opacity: 0.1;
         z-index: -1;
+        border-radius: 12px;
     }
 
     label {
@@ -250,11 +256,12 @@ export const RecuperarSenha = styled.div`
         font-family: "Montserrat", sans-serif;
         font-size: 1.3em;
         font-weight: 700;
-        color: #fcfbfbff;
+        color: rgb(0, 0, 0);
         margin-bottom: 2rem;
         display: flex;
         align-items: center;
         justify-content: center;
+        letter-spacing: 4px;
     }
 
     input {
@@ -280,16 +287,16 @@ export const RecuperarSenha = styled.div`
         margin-bottom: 0.5rem;
         border: none;
         border-radius: 8px;
-        background-color: #000000ff;
+        background-color: rgba(0, 0, 0, 0.91);
         color: #ffffffff;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.5s ease-in-out;
 
         &:hover {
-        background-color: #ffffffff;
-        color: #000000ff;
-        transform: translateY(2px);
+        background-color: rgb(0, 0, 0);
+        color: rgb(255, 255, 255);
+        
         }
     }
 

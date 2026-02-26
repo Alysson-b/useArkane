@@ -8,6 +8,7 @@ import back_card from "../../../public/assets/back_card.png"
 import Button from "../common/Button";
 import { DadosCep } from "../../types/product";
 
+
 function Pagamentos() {
     const navigate = useNavigate();
     const [view, setView] = useState("resumo");
@@ -20,8 +21,9 @@ function Pagamentos() {
     const [dadosCep, setDadosCep] = useState<DadosCep>()
     const [pesquisarCep, setPesquisarCep] =useState("")
     const [msgFrte, setMsgFrete] = useState("")
+
     
-    
+
     
     const { items } = useCart();
     
@@ -38,7 +40,7 @@ function Pagamentos() {
 
     const calcularTotal = () => {
         return items.reduce((total, item) => {
-            const variacao = item.product.variacoes.find(
+            const variacao = item.product.variacao.find(
                 (v) => v.tamanho === item.tamanho && v.cor === item.cor,
             );
             
@@ -47,17 +49,20 @@ function Pagamentos() {
             return total + Number(preco) * item.quantidade;
         }, 0);
     };
+
     const total = calcularTotal()
     const pix = calcularTotal() * 0.95
 
     function verificarusuario(){
         const usuarioLogado = localStorage.getItem("token");
+        
 
         if(!usuarioLogado){
             toast.error("Voçe precisa loga-se para Finalizar o Pedido !!", {position: "top-right", className: "toast-message"})
-                
             return;
         }
+
+       
         setView("pagamento")
         
     }

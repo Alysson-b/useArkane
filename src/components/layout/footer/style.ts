@@ -139,3 +139,36 @@ export const  Diretriz = styled.div`
     font-family: "open sans", sans-serif;
 
 `
+
+export const Overlay = styled.div`
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+`;
+
+export const CardModal = styled.div`
+    position: relative;
+    width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    color: #222222;
+
+    #close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #333;
+    }
+`;

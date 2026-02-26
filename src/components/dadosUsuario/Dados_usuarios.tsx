@@ -254,12 +254,15 @@ export const Cadastro_completo = () => {
           />
         </EnderecoStyled>
 
-        <Button type="button" id="alterar">
-          Alterar Dados
-        </Button>
-        <Button type="submit" id="salvar">
-          Salvar
-        </Button>
+        
+            <Button disabled type="button" id="alterar">
+              Alterar Dados
+              </Button>
+
+            <Button type="submit" id="salvar">
+              Salvar
+            </Button>
+        
       </form>
     </ContainerCadastroStyled>
   );

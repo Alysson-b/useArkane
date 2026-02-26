@@ -71,7 +71,7 @@ function LoginModal({fecharLogin}: {fecharLogin: ()=> void}){
                 <LoginContainer>
 
                     <form onSubmit={salvarLogin}>
-                        <h2>Login</h2>
+                        <h2>LOGIN</h2>
                         <Input name="email" id={"email"} placeholder="Digite seu Email"  required/>
                         <Input name="senha" type="password" id={"senha"} placeholder="Digite seu Senha"  required/>
                         <Button children={"Entrar"}/>
@@ -89,7 +89,7 @@ function LoginModal({fecharLogin}: {fecharLogin: ()=> void}){
         {tela === "cadastro" &&(
             <CadastroContainer >
                 <form onSubmit={salvarCadastro}>
-                    <h2>Cadastro</h2>
+                    <h2>CADASTRO</h2>
                     <Input name="nome" id={"nome"} placeholder="Digite seu Nome" required/>
                     <Input name="email" id={"email"} placeholder="Digite seu Email"  required/>
                     <Input name="senha" type="password" id={"senha"} placeholder="Digite seu Senha"  required/>
@@ -106,7 +106,7 @@ function LoginModal({fecharLogin}: {fecharLogin: ()=> void}){
         )}
         {tela === "recuperar" && (
             <RecuperarSenha onClick={(e) => e.stopPropagation()}>
-                <h2>Recuperar Senha</h2>
+                <h2>RECUPERAR SENHA</h2>
                 <Input id={"email"} placeholder={"Digite seu email"}/>
                 <Button onClick={(e) => {e.preventDefault(); setTela('login')}} children={"Enviar"}/>
                 <div>

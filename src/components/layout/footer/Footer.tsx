@@ -1,14 +1,41 @@
-import { Footer, Contatos, Informaçoes, Cartao, Redes, Diretriz } from "./style";
+import { Footer, Contatos, Informaçoes, Cartao, Redes, Diretriz, CardModal, Overlay } from "./style";
 import visa from "../../../../public/assets/visa.png"
 import master from "../../../../public/assets/master.png"
 import pix from "../../../../public/assets/pix.png"
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { PoliticaTrocas } from "../../../pages/Devolucao/Devolucao";
+import { PoliticaEnvio } from "../../../pages/frete/freteEntrega";
+import { PoliticaPrivacidade } from "../../../pages/privacidade/Privacidade";
+import { TermosUso } from "../../../pages/termoUso/TermoUso";
+import Button from "../../common/Button";
 
 
 
 function FooterSection(){
 
     const navigate = useNavigate()
+    const [modalAtivo, setModalAtivo] = useState<string | null>(null)
+
+    const fecharModal= ()=>{
+        setModalAtivo(null)
+    }
+    useEffect(()=>{
+        const Fecharmodal = (event: KeyboardEvent)=>{
+            if(event.key === "Escape")
+                fecharModal()
+        }
+
+        if(modalAtivo){
+            window.addEventListener("keydown", Fecharmodal)
+
+        }
+
+        return ()=>{
+            window.removeEventListener("keydown", Fecharmodal)
+        }
+    },[modalAtivo])
+
     return(
         <>
         <Footer>
@@ -28,15 +55,15 @@ function FooterSection(){
                 <h3>INFORMAÇOES</h3>
                 <br />
                 <p onClick={()=> navigate("/cadastro")}>Meus pedidos</p>
-                <p onClick={()=> navigate("/envio")}>Politica de envio</p>
-                <p onClick={()=> navigate("/troca")}> Troca e Devoluçao</p>
+                <p onClick={()=> setModalAtivo("frete")}>Politica de envio</p>
+                <p onClick={()=> setModalAtivo("devolucao")}> Troca e Devoluçao</p>
                 
             <div>
                 <br />
                 <h3>PRECISA DE AJUDA?</h3>
                 <br />
-                <p onClick={()=> navigate("/termo")}>Termos de uso</p>
-                <p onClick={()=> navigate("/privacidade")}>Polita de Privacidade</p>
+                <p onClick={()=> setModalAtivo("termo")}>Termos de uso</p>
+                <p onClick={()=> setModalAtivo("privacidade")}>Polita de Privacidade</p>
             </div>
             </div>
                 
@@ -89,6 +116,26 @@ function FooterSection(){
             <Diretriz>
             <p>© 2026 useArkane®. Todos os direitos reservados.</p> 
             </Diretriz>
+
+        
+        {modalAtivo && (
+            <Overlay onClick={fecharModal}>
+                <CardModal onClick={(e)=> e.stopPropagation()}>
+                    <Button id="close" onClick={fecharModal}>X</Button>
+
+                    {modalAtivo === "frete" && <PoliticaEnvio/>}
+                    {modalAtivo === "devolucao" && <PoliticaTrocas/>}
+                    {modalAtivo === "termo" && <TermosUso/>}
+                    {modalAtivo === "privacidade" && <PoliticaPrivacidade/>}
+                </CardModal>
+            </Overlay>
+        )}
+    
+
+
+        
+
+
 
         </>
     )

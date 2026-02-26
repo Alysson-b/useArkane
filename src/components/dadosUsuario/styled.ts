@@ -75,9 +75,7 @@ export const ContainerCadastroStyled = styled.div`
     cursor: pointer;
     transition: all .3s ease-in-out;
 
-    &:hover{
-        transform: scale(1.01);
-    }
+    
     &#alterar{
         background-color: #0d4b01af;
     }
@@ -86,10 +84,10 @@ export const ContainerCadastroStyled = styled.div`
     }
 
     &#salvar{
-        background-color: #8f8f8fd8;
+        background-color: #2563eb;
     }
     &#salvar:hover{
-        background-color: #7e7d7dad;
+        background-color: #1d4ed8;
        
     }
   }

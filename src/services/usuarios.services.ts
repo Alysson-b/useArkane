@@ -7,6 +7,11 @@ export async function getUsuarios(): Promise<User[]> {
     return  data
 }
 
+export async function getPerfilCompleto(): Promise<{perfilCompleto: boolean}> {
+    const {data} = await api.get("/api/users/status")
+    return  data
+}
+
 export async function completarCadastro(data: completar_cadastroDTO): Promise<{ mensagem: string }> {
     const response = await api.post("/api/users/profile", data)
     return  response.data

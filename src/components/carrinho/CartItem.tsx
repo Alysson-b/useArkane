@@ -4,6 +4,7 @@ import { useCart } from "../../contexts/provider_car/useCart"
 import Pagamentos from "./Pagamentos"
 
 
+
 function CartPage() {
     const { items, addItem, removeItem, diminuirQuantidade } = useCart()
     const aumentarQuantidade = (productId: string, tamanho?: string, cor?: string) => {
@@ -17,7 +18,8 @@ function CartPage() {
         console.log("retorno do item ", item)
     }
 
-    return (
+
+    return (    
         <>
             <CartContainer>
                 
@@ -62,9 +64,9 @@ function CartPage() {
                                 </div>
 
                                     <div className="valorPag">
-                                        <h3 className="precoTotal">R$ {(Number(item.product.variacoes[0].preco) * item.quantidade).toFixed(2)}</h3>
+                                        <h3 className="precoTotal">R$ {(Number(item.product.variacao[0].preco) * item.quantidade).toFixed(2)}</h3>
                                         <br />
-                                        <p>R$ {(Number(item.product.variacoes[0].preco) * item.quantidade * 0.95).toFixed(2)} No PIX ( -5% )</p>
+                                        <p>R$ {(Number(item.product.variacao[0].preco) * item.quantidade * 0.95).toFixed(2)} No PIX ( -5% )</p>
                                     </div>
                                 </CartItem>
                             ))}

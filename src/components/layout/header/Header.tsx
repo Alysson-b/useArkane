@@ -22,6 +22,7 @@ function Header({ LoginModal }: Props) {
     function fecharMiniModal() {
         setOpen(false);
     }
+    
 
     return (
         <Navigation>
