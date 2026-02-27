@@ -6,8 +6,8 @@ export interface User{
     email: string
     tipo: UserTipo
     pedido: Pedido_usuario[]
-    usuarios_enderecos: usuarios_enderecos
-    usuarios_perfils: usuarios_perfil
+    usuarios_enderecos: usuarios_enderecos[]
+    usuarios_perfils: usuarios_perfil[]  
 }
 
 export interface usuarios_enderecos {
@@ -46,4 +46,27 @@ export interface Pedido_usuario{
     total: number
     itens_do_pedido: string
 
+}
+
+export interface UserResponse {
+    id: number
+    nome: string
+    email: string
+    created_at: string
+
+    perfil: {
+        sexo: string | null
+        telefone: string | null
+        data_nascimento: string | null
+    } | null
+
+    enderecos: {
+        rua: string
+        numero: string
+        complemento: string
+        bairro: string
+        cidade: string
+        estado: string
+        cep: string
+    }[]
 }

@@ -1,8 +1,8 @@
-import { completar_cadastroDTO, User } from "../types/user"
+import { completar_cadastroDTO, User, UserResponse } from "../types/user"
 import { api } from "./api"
 
 
-export async function getUsuarios(): Promise<User[]> {
+export async function getUsuarios(): Promise<UserResponse[]> {
     const {data} = await api.get("/api/users")
     return  data
 }

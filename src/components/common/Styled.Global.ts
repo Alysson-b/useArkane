@@ -659,4 +659,91 @@ export const ListProductStyled = styled.div`
 
 `;
 
+export const ListUsuariosStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 0.8rem;
 
+  .containerUser {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f0f8ff;
+    color: #222;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: #e6f2ff;
+    }
+  }
+
+  .dadosUser {
+    padding: 0 1.5rem;
+  }
+
+  .enderecos {
+    display: flex;
+    flex-direction: column;
+    background-color: #f8fbff;
+    border-radius: 10px;
+    width: 50%;
+    border: 1px solid #e0e0e0;
+    padding: 10px 14px;
+    margin: 6px 0 0 0;
+    color: #333;
+    font-family: "Roboto", sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .enderecos ul {
+    list-style: none;
+    padding: 4px 0;
+  }
+
+  .semEndereco {
+    font-style: italic;
+    color: #777;
+  }
+
+  .bottoes {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    
+}
+    button {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+        
+        &:hover {
+            opacity: 0.85;
+        }
+    }
+    #excluir{
+        background-color: #db0101f1;
+        color: #fff;
+    }
+    #editar{
+        background-color: #007e11f1;
+        color: #fff;
+    }
+
+  .iconDrop {
+    position: absolute;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+`;

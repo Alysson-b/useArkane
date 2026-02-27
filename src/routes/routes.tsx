@@ -8,6 +8,7 @@ import ModalAdmin from "../components/common/Modal_admin";
 import ListaDeProdutos from "../components/common/ListProduct";
 import { Sobre } from "../pages/sobre/Sobre";
 import { Cadastro_completo } from "../components/dadosUsuario/Dados_usuarios";
+import { ListarUsuarios } from "../components/common/ListUsuarios";
 
 
 
@@ -27,6 +28,8 @@ export function AppRoutes(){
                         <Route path="/admin/lista" element={<ListaDeProdutos/>}/>
                         <Route path="/admin/:id" element={<ModalAdmin/>}/>
                         <Route path="/cadastro" element={<Cadastro_completo/>}/>
+                        <Route path="/usuarios" element={<ListarUsuarios/>}/>
+                        
                     </Route>
                 </Routes>
                 <ToastContainer/>

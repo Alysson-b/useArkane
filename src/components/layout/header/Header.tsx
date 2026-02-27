@@ -109,6 +109,8 @@ function Header({ LoginModal }: Props) {
                         <button onClick={() => navigate("/admin/lista")}>
                         Ver produto
                         </button>
+
+                        <button onClick={()=> navigate("/usuarios")}>Ver usuarios</button>
                     </div>
                     )}
                 </div>
