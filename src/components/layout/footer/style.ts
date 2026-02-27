@@ -171,4 +171,8 @@ export const CardModal = styled.div`
     cursor: pointer;
     color: #333;
     }
+
+    &::-webkit-scrollbar{
+        width: 20px;
+    }
 `;
