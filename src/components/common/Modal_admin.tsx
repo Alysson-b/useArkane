@@ -101,6 +101,7 @@ function ModalAdmin() {
             setImageUrl(data.image_url);
             setVariacoes(data.variacoes || []);
             console.log("STATE variacoes:", data.variacoes);
+            console.log("DATA COMPLETA:", data);
         } catch (err) {
             toast.error("Error ao carregar produto");
         }
@@ -274,10 +275,8 @@ function ModalAdmin() {
 
             <div className="preview">
                     {imageUrl && <img src={imageUrl} alt="Preview" />}
-                
-                
+            <div className="CardPreview">
             {variacoes?.map((v) => (
-        
                 <div key={v.id ?? v.tempId} className="variacao-card">
                     <span>
                         <strong>Tamanho:</strong> {v.tamanho}
@@ -301,6 +300,7 @@ function ModalAdmin() {
                     />
                 </div>
             ))}
+            </div>
             </div>
 
             {minimodal && variacaoSelect && (

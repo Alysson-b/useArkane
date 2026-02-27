@@ -8,6 +8,8 @@ import back_card from "../../../public/assets/back_card.png"
 import Button from "../common/Button";
 import { DadosCep } from "../../types/product";
 import { getPerfilCompleto } from "../../services/usuarios.services";
+import { ContainerCadastroStyled } from "../dadosUsuario/styled";
+
 
 
 function Pagamentos() {
@@ -22,6 +24,7 @@ function Pagamentos() {
     const [dadosCep, setDadosCep] = useState<DadosCep>()
     const [pesquisarCep, setPesquisarCep] =useState("")
     const [msgFrte, setMsgFrete] = useState("")
+    
 
     
 
@@ -54,7 +57,7 @@ function Pagamentos() {
     const total = calcularTotal()
     const pix = calcularTotal() * 0.95
 
-    async function verificarusuario(){
+    async function verificarUsuario(){
         const usuarioLogado = localStorage.getItem("token");
         
         if(!usuarioLogado){
@@ -62,10 +65,13 @@ function Pagamentos() {
             return;
         }
         const perfilVerificado = await getPerfilCompleto()
-        if(perfilVerificado){
+        if(perfilVerificado?.perfilCompleto){
             setView("pagamento")
+            return
         }else{
             toast("complete seu cadastro")
+            navigate("/cadastro")
+
         }
     }
 
@@ -159,7 +165,7 @@ function Pagamentos() {
 
             <div className="btns">
                 <button onClick={() => navigate("/")}>Continuar Comprando</button>
-                <button id="finalizar" onClick={()=> verificarusuario()}>Finalizar pedido</button>
+                <button id="finalizar" onClick={()=> verificarUsuario()}>Finalizar pedido</button>
             </div>
             </div>
         )}

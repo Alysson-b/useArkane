@@ -418,7 +418,11 @@ export const ContainerAdmin = styled.div`
     width: 100%;
     margin-top: 20px;
 }
-
+.CardPreview{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
 .preview > img {
     border-radius: 12px;
     max-width: 400px;
@@ -427,7 +431,7 @@ export const ContainerAdmin = styled.div`
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
 }
 
-/* Card de cada variação */
+
 .preview .variacao-card {
     width: 100%;
     max-width: 400px;
