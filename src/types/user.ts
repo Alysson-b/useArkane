@@ -55,9 +55,9 @@ export interface UserResponse {
     created_at: string
 
     perfil: {
-        sexo: string | null
-        telefone: string | null
-        data_nascimento: string | null
+        sexo: string
+        telefone: string
+        data_nascimento: string 
     } | null
 
     enderecos: {

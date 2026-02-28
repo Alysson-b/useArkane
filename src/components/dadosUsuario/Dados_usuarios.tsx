@@ -8,27 +8,29 @@ import {
 } from "./styled";
 import { useAuth } from "../../contexts/auth/useAuth";
 import { toast } from "react-toastify";
-import { completarCadastro } from "../../services/usuarios.services";
+import { completarCadastro, getDadosUsuario } from "../../services/usuarios.services";
 
 export const Cadastro_completo = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [cpf, setCpf] = useState("");
-  const [sexo, setSexo] = useState("");
-  const [telefone, setTelefone] = useState("");
-  const [data_nascimento, setData_nascimento] = useState("");
-  const [rua, setRua] = useState("");
-  const [numero, setNumero] = useState("");
-  const [complemento, setComplemento] = useState("");
-  const [bairro, setBairro] = useState("");
-  const [cidade, setCidade] = useState("");
-  const [estado, setEstado] = useState("");
+  const [sexo, setSexo] = useState<string | undefined>("");
+  const [telefone, setTelefone] = useState<string | undefined>("");
+  const [data_nascimento, setData_nascimento] = useState<string | undefined>("");
+  const [rua, setRua] = useState<string | undefined>("");
+  const [numero, setNumero] = useState<string | undefined>("");
+  const [complemento, setComplemento] = useState<string | undefined>("");
+  const [bairro, setBairro] = useState<string | undefined>("");
+  const [cidade, setCidade] = useState<string | undefined>("");
+  const [estado, setEstado] = useState<string | undefined>("");
   const [cep, setCep] = useState("");
-
+  const [isLogin, setIsLogin]= useState(false)
   const { user } = useAuth();
+  
 
   useEffect(() => {
     if (user) {
+      setIsLogin(true)
       setName(user.nome);
       setEmail(user.email);
     }
@@ -117,6 +119,29 @@ export const Cadastro_completo = () => {
       toast("Falha ao completar cadastro");
     }
   }
+
+  async function buscarDadosUser() {
+    
+    try{
+      const data = await getDadosUsuario()
+      console.log("retorno do data getDados",data)
+      setSexo(data.perfil?.sexo)
+      setTelefone(data.perfil?.telefone);
+      setData_nascimento(data.perfil?.data_nascimento);
+      setRua(data.enderecos[0].rua);
+      setNumero(data.enderecos[0].numero);
+      setComplemento(data.enderecos[0].complemento);
+      setBairro(data.enderecos[0].bairro);
+      setCidade(data.enderecos[0].cidade);
+      setEstado(data.enderecos[0].estado);
+      setCep(data.enderecos[0].cep);
+
+    }catch(err){
+      console.log("eero do server", err)
+    }
+    
+  }
+  
   return (
     <ContainerCadastroStyled>
       <form onSubmit={completar}>
@@ -128,12 +153,12 @@ export const Cadastro_completo = () => {
             id="nome"
             placeholder="Nome completo"
             onChange={(e) => setName(e.target.value)}
-            disabled
+            disabled={isLogin}
             required
           />
           <Input
             value={email}
-            disabled
+            disabled={isLogin}
             type="email"
             name="email"
             id="email"
@@ -255,7 +280,7 @@ export const Cadastro_completo = () => {
         </EnderecoStyled>
 
         
-            <Button disabled type="button" id="alterar">
+            <Button onClick={()=> buscarDadosUser()} type="button" id="alterar">
               Alterar Dados
               </Button>
 

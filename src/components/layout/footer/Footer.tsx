@@ -54,7 +54,7 @@ function FooterSection(){
             <div id="footer">
                 <h3>INFORMAÇOES</h3>
                 <br />
-                <p>Meus pedidos</p>
+                <p onClick={()=> navigate("/cadastro")}>Meu perfil</p>
                 <p onClick={()=> setModalAtivo("frete")}>Politica de envio</p>
                 <p onClick={()=> setModalAtivo("devolucao")}> Troca e Devoluçao</p>
                 
