@@ -8,7 +8,6 @@ import back_card from "../../../public/assets/back_card.png"
 import Button from "../common/Button";
 import { DadosCep } from "../../types/product";
 import { getPerfilCompleto } from "../../services/usuarios.services";
-import { ContainerCadastroStyled } from "../dadosUsuario/styled";
 
 
 
@@ -96,11 +95,12 @@ function Pagamentos() {
             toast("Endereço nao encontrado")
         }
     }
-
+    
     return (
         <>
-        {view === "resumo" && (
-            <div className="precoTotal">
+        
+                {view === "resumo" && (
+                    <div className="precoTotal">
             <div className="title">
                 <h3>
                 <i className="fa-solid fa-list-check"></i> Resumo
@@ -144,7 +144,7 @@ function Pagamentos() {
                     id="cep"
                     placeholder="Digite seu CEP"
                     maxLength={9}
-                />
+                    />
                 <Button onClick={()=> calcularFrete()}>OK</Button>
                 </div>
 
@@ -175,7 +175,7 @@ function Pagamentos() {
             <i
                 onClick={() => setView("resumo")}
                 className="fa-solid fa-backward-fast"
-            ></i>
+                ></i>
             <h2> Forma de Pagamento </h2>
 
             <div className="pagamentoPix" onClick={() => setMetodo("pix")}>
@@ -201,7 +201,7 @@ function Pagamentos() {
             )}
 
             {metodo === "boleto" && (
-
+                
                 <div className="containerBoleto">
                     <h3>Boleto Emitido!</h3>
                 </div>
@@ -214,20 +214,21 @@ function Pagamentos() {
                         <div className="inputs">
                     <input
                         type="text"
-                        maxLength={16}
+                        maxLength={19}
+                        value={numeroCard}
                         placeholder="Número do cartão*  0000-0000-0000-0000"
                         onChange={(e)=> setNumeroCard(formatarNumero(e.target.value))}
-                    />
+                        />
                     <input type="text" placeholder="Nome impressono cartão" 
                     onChange={(e)=> setNomeCard(e.target.value)} />
 
                     <div className="validade">
-                        <input type="text" placeholder="Validade* 00/00" 
+                        <input value={validCard} type="text" placeholder="Validade* 00/00" 
                         onChange={(e)=> {
                             const formatacao = formatarValidade(e.target.value)
                             setValidCard(formatacao)
                             if(formatacao.length === 7) setFlipCard(true)
-                        }}/>
+                            }}/>
 
                         <input maxLength={3} className="cvv" type="number" placeholder="CVV" 
                         onChange={(e)=> {

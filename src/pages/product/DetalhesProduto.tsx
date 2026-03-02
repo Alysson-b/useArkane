@@ -54,7 +54,11 @@ export default function DetalhesProduto() {
     }
 
     function aumentarQuantidade() {
-        setQuantidade((prev) => prev + 1);
+        if(quantidade < estoqueAtual){
+            setQuantidade((prev) => prev + 1);
+        }else{
+            toast("limite maxímo do produto atingido")
+        }
     }
 
     function diminuirQuantidade() {
@@ -71,7 +75,7 @@ export default function DetalhesProduto() {
         v => v.tamanho === tamanho && v.cor === cor
         )
 
-    const estoqueAtual = variacaoSelecionada?.estoque ?? 0
+    const estoqueAtual = Number(variacaoSelecionada?.estoque ?? 0)
     
 
     if (loading) {
@@ -131,15 +135,9 @@ export default function DetalhesProduto() {
                     PIX (-5%)
                 </p>
 
-                {estoqueAtual > 1 && estoqueAtual < 5 && (
-                    <div className="warning">
-                        <p>Ultimas unidades</p>
-                    </div>
-                )}
-
-                {estoqueAtual === 1 && (
-                    <div className="warningLast">
-                        <p>Última unidade</p>
+                {estoqueAtual > 0 && estoqueAtual < 5 && (
+                    <div className={estoqueAtual === 1 ? "warningLast" : "warning"} >
+                        <p>{estoqueAtual === 1 ? "Última unidade" : "Últimas unidades"}</p>
                     </div>
                 )}
 
@@ -182,13 +180,13 @@ export default function DetalhesProduto() {
                 -{" "}
                 </button>
                 <input type="text" value={quantidade} readOnly />
-                <button onClick={aumentarQuantidade}>+</button>
+                <button disabled={quantidade >= estoqueAtual} onClick={aumentarQuantidade}>+</button>
             </div>
 
             <div className="addBtn">
                 <button
                 className={`btn-comprar ${tamanho && cor ? "ativo" : ""}`}
-                disabled={!tamanho}
+                disabled={!tamanho || !cor}
                 onClick={adicionarAoCarrinho}
                 >
                 Adicionar ao Carrinho

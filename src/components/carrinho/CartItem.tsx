@@ -23,8 +23,6 @@ function CartPage() {
     return (    
         <>
             <CartContainer>
-                
-
                 <div className="containerCart">
                     {items.length === 0 ? (
                         <div className="carrinhoVazio">
@@ -34,8 +32,6 @@ function CartPage() {
                     ) : (
                         <>
                             {items.map((item) => (
-
-                                
                                 <CartItem key={item.product.id}>
                                 <div className="inforCart">
 
@@ -76,7 +72,7 @@ function CartPage() {
                         </>
                     )}
                 </div>
-                <Pagamentos/>
+                {items.length > 0 && <Pagamentos/>}
             </CartContainer>
 
         </>

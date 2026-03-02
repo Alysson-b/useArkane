@@ -124,7 +124,7 @@ export const Cadastro_completo = () => {
     
     try{
       const data = await getDadosUsuario()
-      console.log("retorno do data getDados",data)
+
       setSexo(data.perfil?.sexo)
       setTelefone(data.perfil?.telefone);
       setData_nascimento(data.perfil?.data_nascimento);
@@ -280,11 +280,25 @@ export const Cadastro_completo = () => {
         </EnderecoStyled>
 
         
-            <Button onClick={()=> buscarDadosUser()} type="button" id="alterar">
+            <Button disabled={!isLogin} onClick={()=> buscarDadosUser()} type="button" id="alterar">
               Alterar Dados
               </Button>
 
-            <Button type="submit" id="salvar">
+            <Button disabled={
+            !name ||
+            !email ||
+            !cpf ||
+            !sexo ||
+            !telefone ||
+            !data_nascimento ||
+            !rua ||
+            !numero ||
+            !complemento ||
+            !bairro ||
+            !cidade ||
+            !estado ||
+            !cep
+            } type="submit" id="salvar">
               Salvar
             </Button>
         

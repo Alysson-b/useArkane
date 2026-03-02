@@ -125,7 +125,10 @@ export const  ItemsCarrinho = styled.div`
             margin-left: 4px;
             background: #000000f6;
             color: #ccc;
-
+        }
+        :disabled{
+            background-color: #faf6f6;
+            color: #cccccc;
         }
         input{
             width: 25px;

@@ -21,6 +21,7 @@ function ModalAdmin() {
     const { id } = useParams<{ id: string }>();
     const [variacaoSelect, setVariacaoSelect] = useState<VariacaoProduto | null>(null);
     const [minimodal, setMinimodal] = useState(false);
+    
 
     async function cadastrarProduto(e: React.FormEvent) {
         e.preventDefault();
@@ -215,6 +216,7 @@ function ModalAdmin() {
                 name="tamanho"
                 id="tamanho"
                 value={tamanho}
+                disabled={!cor}
                 onChange={(e) => setTamanho(e.target.value)}
                 >
                 <option value="">Selecione um Tamanho:</option>
@@ -228,6 +230,7 @@ function ModalAdmin() {
                 name="cor"
                 id="cor"
                 value={cor}
+                disabled={!nome || !descricao || !imageUrl || !categoria}
                 onChange={(e) => setCor(e.target.value)}
                 >
                 <option value="">Selecione um cor:</option>
@@ -243,6 +246,7 @@ function ModalAdmin() {
                 value={preco}
                 id="preco"
                 name="preco"
+                disabled={!cor}
                 placeholder="Digite o preco do produto"
                 onChange={(e) => setPreco(e.target.value)}
                 />
@@ -251,6 +255,7 @@ function ModalAdmin() {
                 className="estoque"
                 id="estoque"
                 name="estoque"
+                disabled={!cor}
                 placeholder="Digite a estoque do produto"
                 type="number"
                 onChange={(e) => setEstoque(e.target.value)}

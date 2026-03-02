@@ -220,14 +220,21 @@ export const CartContainer = styled.div`
   }
 
   .carrinhoVazio {
+    width: 100%;
+    height: 20vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: auto;
-    font-family: "roboto", sans-serif;
-    font-weight: 700;
-    font-size: 25px;
-    gap: 2rem;
+    gap: 1rem;
+
+    & p{
+      font-family: "roboto", sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+    }
+    & i{
+      font-size: 2rem;
+    }
   }
 `;
 export const CartItem = styled.div`
