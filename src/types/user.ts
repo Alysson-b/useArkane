@@ -70,3 +70,14 @@ export interface UserResponse {
         cep: string
     }[]
 }
+
+
+export interface Items_do_pedido{
+    quantidade: number
+    preco: number
+    pedido_id: number
+    produto_id: number
+    variacao_id: number
+    pedido: string
+    produto: string
+}

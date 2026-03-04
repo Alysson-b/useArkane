@@ -7,7 +7,7 @@ import front_card from "../../../public/assets/frontCard.png"
 import back_card from "../../../public/assets/back_card.png"
 import Button from "../common/Button";
 import { DadosCep } from "../../types/product";
-import { getPerfilCompleto } from "../../services/usuarios.services";
+import { getPerfilCompleto, pedidoUsuario } from "../../services/usuarios.services";
 
 
 
@@ -96,6 +96,21 @@ function Pagamentos() {
         }
     }
     
+
+    async function finalizarCompra() {
+        try{
+            const pedido = {
+                itens: items.map(item =>({
+                    produto_id: item.product.id,
+                    quatidade: item.quantidade
+                }))
+            }
+            const pedidosUduario = await pedidoUsuario()
+        }catch(err){
+            console.log(err)
+        }
+    }
+
     return (
         <>
         
