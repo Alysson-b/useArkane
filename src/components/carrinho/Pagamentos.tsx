@@ -11,6 +11,7 @@ import { getPerfilCompleto, pedidoUsuario } from "../../services/usuarios.servic
 
 
 
+
 function Pagamentos() {
     const navigate = useNavigate();
     const [view, setView] = useState("resumo");
@@ -99,13 +100,17 @@ function Pagamentos() {
 
     async function finalizarCompra() {
         try{
-            const pedido = {
-                itens: items.map(item =>({
-                    produto_id: item.product.id,
-                    quatidade: item.quantidade
+            const pedidoUser = {
+                status: "aguardando_pagamento",
+                total: 0,
+                items_do_pedido: items.map(item =>({
+                produto: item.product.id,
+                quantidade: item.quantidade
+                
                 }))
             }
-            const pedidosUduario = await pedidoUsuario()
+            await pedidoUsuario(pedidoUser)
+            
         }catch(err){
             console.log(err)
         }
@@ -180,7 +185,7 @@ function Pagamentos() {
 
             <div className="btns">
                 <button onClick={() => navigate("/")}>Continuar Comprando</button>
-                <button id="finalizar" onClick={()=> verificarUsuario()}>Finalizar pedido</button>
+                <button id="finalizar" onClick={()=> finalizarCompra()}>Finalizar pedido</button>
             </div>
             </div>
         )}

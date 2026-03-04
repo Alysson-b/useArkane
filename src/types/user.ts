@@ -44,8 +44,9 @@ export interface completar_cadastroDTO {
 export interface Pedido_usuario{
     status: string
     total: number
-    itens_do_pedido: string
-
+    items_do_pedido: {
+        produto: string,
+        quantidade: number}[]
 }
 
 export interface UserResponse {

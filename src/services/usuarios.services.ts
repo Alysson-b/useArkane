@@ -33,7 +33,7 @@ export async function deleteUsuarios(): Promise<User> {
 }
 
 
-export async function pedidoUsuario(): Promise<Pedido_usuario> {
-    const {data} = await api.post("/pedidos")
-    return data
+export async function pedidoUsuario(data: Pedido_usuario): Promise<{message: string}> {
+    const response = await api.post("api/pedido/me", data)
+    return response.data
 }
