@@ -99,22 +99,26 @@ function Pagamentos() {
     
 
     async function finalizarCompra() {
-        try{
-            const pedidoUser = {
-                status: "aguardando_pagamento",
-                total: 0,
-                items_do_pedido: items.map(item =>({
-                produto: item.product.id,
-                quantidade: item.quantidade
-                
-                }))
+        try {
+            const itens = items.map(item => {
+            const variacao = item.product.variacoes?.[0]
+
+            if (!variacao) {
+                throw new Error("Produto sem variação")
             }
-            await pedidoUsuario(pedidoUser)
-            
-        }catch(err){
+
+            return {
+                variacao_id: variacao.id,
+                quantidade: item.quantidade
+                }
+        })
+
+        await pedidoUsuario({ itens })
+
+        } catch (err) {
             console.log(err)
         }
-    }
+}
 
     return (
         <>

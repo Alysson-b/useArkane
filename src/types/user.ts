@@ -42,10 +42,8 @@ export interface completar_cadastroDTO {
 }
 
 export interface Pedido_usuario{
-    status: string
-    total: number
-    items_do_pedido: {
-        produto: string,
+    itens: {
+        variacao_id: number | undefined,
         quantidade: number}[]
 }
 

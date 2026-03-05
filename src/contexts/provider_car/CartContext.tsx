@@ -6,6 +6,8 @@ interface CartItem {
   quantidade: number;
   tamanho?: string;
   cor?: string;
+
+  
 }
 
 interface CartContextProps {
