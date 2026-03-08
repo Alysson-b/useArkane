@@ -1,5 +1,7 @@
 export type UserTipo = "user" | "admin"
 
+export type CarroselImagens =  []
+
 export interface User{
     id: string
     nome: string
@@ -94,3 +96,4 @@ export interface Pedidos_usuarios{
     image_url: string
     produto_nome: string
 }
+

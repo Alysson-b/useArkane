@@ -829,3 +829,60 @@ export const ListaPedidosStyled =  styled.div`
     color: #991b1b;
   }
 `
+
+
+export const CardCarroselStyled = styled.div`
+  .carrosel {
+        position: relative;
+        width: 100%;
+        height: 600px;
+        margin: auto;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      
+    }
+
+    .carrosel img {
+        width: 100%;
+        height: 600px;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .carrosel img.active {
+        opacity: 1;
+        position: relative;
+    }
+
+    .carrosel .indicators {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 2;
+    }
+
+    .carrosel .not {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: rgba(255,255,255,0.6);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .carrosel .not.active {
+        background-color: white;
+    }
+
+    .carrosel button:hover {
+        background-color: rgba(0,0,0,0.7);
+    }
+`
