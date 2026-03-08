@@ -5,7 +5,6 @@ import logo from "../../../../public/assets/Logo.png";
 import { useAuth } from "../../../contexts/auth/useAuth";
 import {  useState } from "react";
 import { useCart } from "../../../contexts/provider_car/useCart";
-import Carrosel from "../../common/Carrosel";
 
 interface Props {
     LoginModal: () => void;
