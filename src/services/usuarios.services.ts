@@ -1,4 +1,4 @@
-import { completar_cadastroDTO, Pedido_usuario, User, UserResponse } from "../types/user"
+import { completar_cadastroDTO, Pedido_usuario, Pedidos_usuarios, User, UserResponse } from "../types/user"
 import { api } from "./api"
 
 
@@ -36,4 +36,10 @@ export async function deleteUsuarios(): Promise<User> {
 export async function pedidoUsuario(data: Pedido_usuario): Promise<{message: string}> {
     const response = await api.post("api/pedido/me", data)
     return response.data
+}
+
+
+export async function verificarPedidos(): Promise<Pedidos_usuarios[]> {
+    const {data }= await api.get("/api/users/pedidos")
+    return data
 }

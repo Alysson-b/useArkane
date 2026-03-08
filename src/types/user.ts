@@ -80,3 +80,17 @@ export interface Items_do_pedido{
     pedido: string
     produto: string
 }
+
+
+
+export interface Pedidos_usuarios{
+    pedido_id: number
+    status: string
+    total: string
+    created_at: string
+    preco: string
+    tamanho: string
+    cor: string
+    image_url: string
+    produto_nome: string
+}

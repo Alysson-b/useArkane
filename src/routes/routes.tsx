@@ -9,6 +9,7 @@ import ListaDeProdutos from "../components/common/ListProduct";
 import { Sobre } from "../pages/sobre/Sobre";
 import { Cadastro_completo } from "../components/dadosUsuario/Dados_usuarios";
 import { ListarUsuarios } from "../components/common/ListUsuarios";
+import ListarPedidosUsuarios from "../components/common/ListPedidos";
 
 
 
@@ -29,6 +30,7 @@ export function AppRoutes(){
                         <Route path="/admin/:id" element={<ModalAdmin/>}/>
                         <Route path="/cadastro" element={<Cadastro_completo/>}/>
                         <Route path="/usuarios" element={<ListarUsuarios/>}/>
+                        <Route path="/usuarios/pedidos" element={<ListarPedidosUsuarios/>}/>
                         
                     </Route>
                 </Routes>

@@ -189,7 +189,11 @@ function Pagamentos() {
 
             <div className="btns">
                 <button onClick={() => navigate("/")}>Continuar Comprando</button>
-                <button id="finalizar" onClick={()=> finalizarCompra()}>Finalizar pedido</button>
+                <button id="finalizar" onClick={()=> {
+                    verificarUsuario()
+                    finalizarCompra()
+                }
+                    }>Finalizar pedido</button>
             </div>
             </div>
         )}
