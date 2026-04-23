@@ -8,6 +8,7 @@ import back_card from "../../../public/assets/back_card.png"
 import Button from "../common/Button";
 import { DadosCep } from "../../types/product";
 import { getPerfilCompleto, pedidoUsuario } from "../../services/usuarios.services";
+import LoginModal from "../common/Modal";
 
 
 
@@ -61,6 +62,7 @@ function Pagamentos() {
         const usuarioLogado = localStorage.getItem("token");
         
         if(!usuarioLogado){
+            LoginModal
             toast.error("Voçe precisa loga-se para Finalizar o Pedido !!", {position: "top-right", className: "toast-message"})
             return;
         }

@@ -3,7 +3,7 @@ import { api } from "./api"
 
 export async function getProducts(): Promise<Product[]> {
     const {data} = await api.get("/api/produtos")
-    return data
+    return data.data
 }
 export async function getProductsId(id: string): Promise<Product> {
     const {data} = await api.get(`/api/produtos/${id}`)

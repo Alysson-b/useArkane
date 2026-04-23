@@ -20,6 +20,31 @@ export const HeaderMenu = styled.div`
         width: 8%;
         
     }
+    .pages{
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        width: 100%;
+    }
+    button{
+        cursor: pointer;
+        padding: 4px 20px;
+        border: none;
+        border-radius: 6px;
+        color: #000000;
+        background: #b4b4b4;
+        font-family: "roboto", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: 0.5s ease-in-out;
+
+        &:hover{
+            background: #dfdfdf;
+            transform: scale(1.01);
+            color: #1f1f1f;
+    }
+    }
+    
 `;
 
 export const Cards = styled.div`

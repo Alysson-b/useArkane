@@ -9,7 +9,7 @@ import { CadastroContainer, LoginContainer, Overlay, RecuperarSenha } from "./St
 
 type loginProps = "login" | "cadastro" | "recuperar"
 
-function LoginModal({fecharLogin}: {fecharLogin: ()=> void}){
+export function LoginModal({fecharLogin}: {fecharLogin: ()=> void}){
     const [tela, setTela] = useState<loginProps>("login")
     const {login} = useAuth()
     const {cadastrar} = useAuth()

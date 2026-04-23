@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { Card, Cards, HeaderMenu, Loading } from "./style";
 import { getProducts } from "../../services/product.service";
 import { useSearch } from "../../contexts/provider_search/useSeach";
+import axios from "axios";
+import Button from "../common/Button";
 
 
 export function ProductList(){
@@ -11,22 +13,54 @@ export function ProductList(){
     const [loading, setLoading] = useState(true)
     const navigate = useNavigate()
     const { search } = useSearch()
+    const [page, setPage] = useState(1)
+    const limite = 6
+    const [hasProduct, setHasProduct] = useState(true)
 
-    
-
-    useEffect(()=>{
-        async function carregarProdutos() {
+    useEffect(()=> {
+        async function limitePorPagina() {
             try{
-                const data = await getProducts()
-                setProduct(data)
+                setLoading(true)
+                    const response = await axios(`https://arkane-backend-1.onrender.com/api/produtos?page=${page}&limit=${limite}`)
+                    const produto = response.data.data || []
+                    setProduct(produto)
+                    setHasProduct(produto.length === limite)
             }catch(err){
                 console.log(err)
-            }finally{
+            }finally {
                 setLoading(false)
             }
         }
-        carregarProdutos()
-    }, [])
+        limitePorPagina()
+    },[page])
+
+    function proximaPagina(){
+        if (hasProduct){
+            setPage(prev=> prev+1)
+        }
+    }
+    function anteriorPagina(){
+        setPage(prev => (prev > 1 ? prev - 1 : 1))
+    }
+
+    useEffect(() => {
+        setPage(1)
+    }, [search])
+
+   
+    // useEffect(()=>{
+    //     async function carregarProdutos() {
+    //         try{
+    //             const data = await getProducts()
+    //             setProduct(data)
+    //         }catch(err){
+    //             console.log(err)
+    //         }finally{
+    //             setLoading(false)
+    //         }
+    //     }
+    //     carregarProdutos()
+    // }, [])
 
     const termo = (search ?? "").toLowerCase()
 
@@ -56,19 +90,30 @@ export function ProductList(){
 
         <Cards id="produtos-container">
             {filtrados.length ? (
-                filtrados.map(Product => (
-                    <Card key={Product.id}>
+                filtrados.map(Product => {
+                    const preco = Product.variacoes?.[0]?.preco
+                    const precoNumero = preco ? parseFloat(preco) : 0
+                    console.log(Product)
+                    console.log(Product.variacoes)
+                    return(
+
+                        <Card key={Product.id}>
                         <img src={Product.image_url} alt={Product.nome} />
-                        <h3>R$ {Product.variacoes[0].preco}</h3>
-                        <p>Em até 2 x {(parseFloat(Product.variacoes[0].preco) / 2).toFixed(2)}</p>
+                        <h3> {preco ? `R$ ${preco}` : "Indisponível"}</h3>
+                        <p>Em até 2 x {(precoNumero / 2).toFixed(2)}</p>
                         <button onClick={() => navigate(`/produto/${Product.id}`)}>Comprar</button>
                     </Card>
-                ))
+                )})
             ) : (
                 <p className="produto-nao-encontrado">Produto não encontrado!</p>
             )}
 
         </Cards>
+        
+            <div className="pages">
+                <Button onClick={anteriorPagina} children={"Anterior"}/>
+                <Button onClick={proximaPagina} children={"Proxima"} disabled={!hasProduct}/>
+            </div>
         </HeaderMenu>
 
     )
