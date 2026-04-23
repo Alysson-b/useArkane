@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Product } from "../../types/product";
 import { useNavigate } from "react-router-dom";
 import { Card, Cards, HeaderMenu, Loading } from "./style";
-import { getProducts } from "../../services/product.service";
 import { useSearch } from "../../contexts/provider_search/useSeach";
 import axios from "axios";
 import Button from "../common/Button";
@@ -46,21 +45,6 @@ export function ProductList(){
     useEffect(() => {
         setPage(1)
     }, [search])
-
-   
-    // useEffect(()=>{
-    //     async function carregarProdutos() {
-    //         try{
-    //             const data = await getProducts()
-    //             setProduct(data)
-    //         }catch(err){
-    //             console.log(err)
-    //         }finally{
-    //             setLoading(false)
-    //         }
-    //     }
-    //     carregarProdutos()
-    // }, [])
 
     const termo = (search ?? "").toLowerCase()
 
