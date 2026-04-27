@@ -49,6 +49,13 @@ export const  ItemsCarrinho = styled.div`
         font-family: 'roboto', sans-serif;
         font-weight: 700;
         margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        }
+        .fa-heart{
+            font-size: 30px;
+            color: #fd0a0a;
         }
         p{
         font-size: 1.2rem;

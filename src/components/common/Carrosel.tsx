@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { CardCarroselStyled } from "./Styled.Global"
+import { CardCarroselStyled, Section } from "./Styled.Global"
 import colection from "../../../public/assets/colection.png"
 import colection3 from "../../../public/assets/colection3.png"
 
@@ -33,7 +33,10 @@ const Carrosel = ({}) =>{
                     ))}
                 </div>
             </div>
-
+                <Section>
+                    <p> <i className="fa-brands fa-pix"></i> Desconto no PIX</p>
+                    <p> <i className="fa-solid fa-truck-fast"></i> Frete grátis acima de R$149</p>
+                </Section>
             </CardCarroselStyled>
         </>
     )

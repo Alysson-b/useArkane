@@ -11,6 +11,11 @@ export const Footer = styled.div`
     font-weight: 700;
     font-size: 1.2em;
   }
+  p{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    font-size: 0.8rem;
+  }
 `;
 export const Contatos = styled.div`
   display: flex;
@@ -50,7 +55,7 @@ export const Informaçoes = styled.div`
   margin: 2em 0;
   background: #ffffff;
   color: #000000;
-  padding: 8px;
+  padding: 1.3rem 8px;
 
   h3 {
     font-family: "Montserrat", sans-serif;
@@ -69,17 +74,47 @@ export const Informaçoes = styled.div`
     }
   }
   img {
-    width: 80px;
+    width: 40px;
     height: 50px;
   }
+
+  .selos{
+    display: flex;
+    flex-direction: column;
+    img{
+      margin: 0 0.9rem;
+    }
+    
+    .seloGoogle{
+      height: 40px;
+    }
+    .seloSSL{
+      height: 60px;
+    }
+    .seloSite{
+      height: 55px;
+    }
+  }
+
+  
 `;
 export const Cartao = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
+  cursor: pointer;
 
   img {
     width: 100%;
+    height: 50px;
+    object-fit: contain;
+  }
+
+  .imagemPix{
+    height: 40px;
+  }
+  .master{
+    height: 70px;
   }
 `;
 
@@ -123,6 +158,14 @@ export const Diretriz = styled.div`
   justify-content: center;
   margin: 1rem;
   font-family: "open sans", sans-serif;
+
+  a{
+    text-decoration: none;
+    color: #ffffffce;
+    font-family: "open sans", sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+  }
 `;
 
 export const Overlay = styled.div`
@@ -161,3 +204,83 @@ export const CardModal = styled.div`
     width: 20px;
   }
 `;
+
+
+export const AvaliaçoesStyled = styled.div`
+      display: none;
+      flex-direction: column;
+      text-align: center;
+      gap: 5rem;
+      margin-bottom: 2rem;
+      
+    .Title{
+      font-family: "open sans", sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      
+    }
+    .cards{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      
+      .card{
+        max-width: 20%;
+        min-height: 100px;
+        display: flex;
+        flex-direction: column;
+        background-color: aliceblue;
+        align-items: center;
+        padding: 1.5rem;
+        color: black;
+        border-radius: 8px;
+        gap: 2rem;
+        transition: all 0.3s ease;
+        &:hover{
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 25px rgba(219, 219, 219, 0.2); /* sombra elegante */
+          }
+        
+        
+
+        .title{
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+
+          h2{
+            font-family: "Montserrat", sans-serif;
+          }
+
+          .fa-user{
+            border: 0.5px solid black;
+            padding: 1rem;
+            border-radius: 50%;
+            color: #ccc;
+          }
+
+          .stars{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+          }
+        }
+        .comentario{
+          width: 100%;
+          flex-wrap: wrap;
+          p{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "roboto", sans-serif;
+            font-size: 1rem;
+            line-height: 1.rem;
+          }
+        }
+
+      }
+    }
+`

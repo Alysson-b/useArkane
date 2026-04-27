@@ -1,7 +1,10 @@
-import { Footer, Contatos, Informaçoes, Cartao, Redes, Diretriz, CardModal, Overlay } from "./style";
+import { Footer, Contatos, Informaçoes, Cartao, Redes, Diretriz, CardModal, Overlay, AvaliaçoesStyled } from "./style";
 import visa from "../../../../public/assets/visa.png"
 import master from "../../../../public/assets/master.png"
 import pix from "../../../../public/assets/pix.png"
+import selo1 from "../../../../public/assets/selo google.png"
+import selo2 from "../../../../public/assets/selo segurança.png"
+import selo3 from "../../../../public/assets/selo ssl.png"
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { PoliticaTrocas } from "../../../pages/Devolucao/Devolucao";
@@ -38,9 +41,33 @@ function FooterSection(){
 
     return(
         <>
+            <AvaliaçoesStyled>
+                <div className="Title">
+                    <h2>O QUE ESTAO FALANDO SOBRE NÓS</h2>
+                </div>
+                <div className="cards">
+                    <div className="card">
+                        <div className="title">
+                            <i className="fa-solid fa-user"></i>
+                            <div className="stars">
+                                <h2>Alisson barbosa</h2>
+                                <i>⭐️⭐️⭐️⭐️⭐️</i>
+                            </div>
+                        </div>
+
+                        <div className="comentario">
+                            <p>“Qualidade absurda, tecido muito confortável,<br />
+                                muito confrtavel e resistente e ainda por cima encaixa muito bem no corpo”
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </AvaliaçoesStyled>
         <Footer>
+
             <div>
-                <h3>FIQUE POR DENTRO DAS NOVIDADES!</h3>
+                <h3>GANHE 10% DE DESCONTO!</h3>
+                <p>na sua primeira compra</p>
             </div>
                 
         <Contatos>
@@ -48,7 +75,10 @@ function FooterSection(){
             <input type="email" placeholder="Digite seu e-mail"/>
             <button>INSCREVER-ME</button>
         </Contatos>
+
+        
         </Footer>
+        
         <Informaçoes>
                 
             <div id="footer">
@@ -99,22 +129,33 @@ function FooterSection(){
         </Redes>
             </div>
                 
-            <div>
+            <div className="info-imgs">
                 <h3>FORMAS DE PAGAMENTO</h3>
+                <Cartao>
+                    
+                        <img src={visa} alt="logo nubank" />
+                        <img className="master" src={master} alt=" logo mastercard" />
+                        <img src={pix} className="imagemPix" alt="logo visa" />
+                    
+                </Cartao>
                 <br />
-        <Cartao>
-            
-                <img src={visa} alt="logo nubank" />
-                <img src={master} alt=" logo mastercard" />
-                <img src={pix} className="imagemPix" alt="logo visa" />
-            
-        </Cartao>
+                <div className="selos">
+                    <h3>SEGURANÇA</h3>
+                    <br />
+                    <Cartao>
+                        <img className="seloGoogle" src={selo1} alt="selo de segurança do google" />
+                        <img className="seloSSL" src={selo3} alt="selo de segurança" />
+                        <img className="seloSite" src={selo2} alt="selo de segurança" />
+                    </Cartao>
+
+                </div>
             </div>
         
         </Informaçoes>
 
             <Diretriz>
-            <p>© 2026 useArkane®. Todos os direitos reservados.</p> 
+                <p>© 2026 useArkane®. Todos os direitos reservados. • Desenvolvido por <a target="_blanck" href="https://portifolio-2025-silk.vercel.app/">Alysson Barbosa</a></p>
+                
             </Diretriz>
 
         

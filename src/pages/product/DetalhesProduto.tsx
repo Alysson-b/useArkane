@@ -122,28 +122,28 @@ export default function DetalhesProduto() {
                 <br />
 
                 <div className="descriçaoPreco">
-                <h3 className="preco">
-                    R${" "}
-                    {(Number(produto.variacoes[0].preco) * quantidade).toFixed(2)}
-                </h3>
+                    <h3 className="preco">
+                        R${" "}
+                        {(Number(produto.variacoes[0].preco) * quantidade).toFixed(2)}
+                    </h3>
 
-                {quantidade > 1 && (
-                    <p className="preco">R$ {produto.variacoes[0].preco} cada</p>
-                )}
-                <p className="precoPix">
-                    R${(parseFloat(produto.variacoes[0].preco) * quantidade * 0.95).toFixed(2)}{" "}
-                    PIX (-5%)
-                </p>
+                    {quantidade > 1 && (
+                        <p className="preco">R$ {produto.variacoes[0].preco} cada</p>
+                    )}
+                    <p className="precoPix">
+                        R${(parseFloat(produto.variacoes[0].preco) * quantidade * 0.95).toFixed(2)}{" "}
+                        PIX (-5%)
+                    </p>
 
-                {estoqueAtual > 0 && estoqueAtual < 5 && (
-                    <div className={estoqueAtual === 1 ? "warningLast" : "warning"} >
-                        <p>{estoqueAtual === 1 ? "Última unidade" : "Últimas unidades"}</p>
-                    </div>
-                )}
+                    {estoqueAtual > 0 && estoqueAtual < 5 && (
+                        <div className={estoqueAtual === 1 ? "warningLast" : "warning"} >
+                            <p>{estoqueAtual === 1 ? "Última unidade" : "Últimas unidades"}</p>
+                        </div>
+                    )}
 
-                <a aria-disabled href="">
-                    Detalhes de parcelamento
-                </a>
+                    <a aria-disabled href="">
+                        Detalhes de parcelamento
+                    </a>
                 </div>
             </div>
 
