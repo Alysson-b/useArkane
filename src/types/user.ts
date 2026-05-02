@@ -97,3 +97,17 @@ export interface Pedidos_usuarios{
     produto_nome: string
 }
 
+
+export interface Avaliacoes_usuarios{
+    produto_nome: number,
+    usuario_nome: number,
+    estrelas: number
+    comentario: string,
+    criado_em: string
+}
+
+export type EnviarAvaliçaoDTO = {
+    comentario: string,
+    estrelas: number,
+    produto_id: number
+}

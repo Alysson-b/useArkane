@@ -11,6 +11,7 @@ import {
   Loading,
 } from "./style";
 import { toast } from "react-toastify";
+import AvaliacoesModal from "../../components/common/AvaliacoesModal";
 
 export default function DetalhesProduto() {
     const { id } = useParams<{ id: string }>();
@@ -22,21 +23,31 @@ export default function DetalhesProduto() {
     const [tamanho, setTamanho] = useState("");
     const [cor, setCor] = useState("");
     const [loading, setLoading] = useState(true);
+    const [openModal, setOpenModal] = useState(false)
     
+    const [imagenAtiva, setImagenAtiva] = useState<string | undefined>(undefined)
 
+    
     useEffect(() => {
         if (!id) return;
 
-        setLoading(true);
-        getProducts()
-        .then((produtos) => {
-            const produtoEncontrado = produtos.find((p) => String(p.id) === id);
-            setProduto(produtoEncontrado || null);
-        })
-        .catch((error) => {
-            console.error("Erro ao carregar produto:", error);
-        })
-        .finally(() => setLoading(false));
+        async function buscarProdutos() {
+            try{
+                setLoading(true);
+                const response = await getProducts()
+                const produtos = response.data
+                const produtoEncontrado = produtos.find((p) => String(p.id) === id);
+
+                setProduto(produtoEncontrado || null);
+
+            }catch(err){
+                console.error("Erro ao carregar produto:", err);
+
+            } finally{
+                setLoading(false)
+            }
+        }
+        buscarProdutos()
     }, [id]);
 
     function adicionarAoCarrinho() {
@@ -76,6 +87,19 @@ export default function DetalhesProduto() {
         )
 
     const estoqueAtual = Number(variacaoSelecionada?.estoque ?? 0)
+
+    useEffect(()=>{
+        if(produto?.image_url){
+            setImagenAtiva(produto.image_url)
+        }
+    },[produto])
+    const visualizarImagen = (ativa: string)=>{
+        if(ativa == "frente"){
+            setImagenAtiva(produto?.image_url)
+        }else{
+            setImagenAtiva(produto?.imagen_back_url)
+        }
+    }
     
 
     if (loading) {
@@ -106,10 +130,11 @@ export default function DetalhesProduto() {
         <ItemsCarrinho>
         <div className="fotos">
             <div className="imgmin">
-            <img src={produto.image_url} alt={produto.nome} />
+                <img className={`${imagenAtiva === "frente" ? "ativa" : ""}`} onClick={()=> visualizarImagen("frente")} src={produto.image_url} alt={produto.nome} />
+                <img className={`${imagenAtiva === "frente" ? "ativa" : ""}`} onClick={()=> visualizarImagen("costa")} src={produto.imagen_back_url} alt={produto.nome} />
             </div>
             <ItemImage>
-            <img src={produto.image_url} alt={produto.nome} />
+                <img src={imagenAtiva} alt={produto.nome} />
             </ItemImage>
         </div>
 
@@ -196,6 +221,13 @@ export default function DetalhesProduto() {
                 Voltar
                 </button>
             </div>
+            </div>
+
+            <div>
+                <button className="avaliarProduto" onClick={()=> setOpenModal(true)}>Avaliar Produto</button>
+                {openModal && (
+                    <AvaliacoesModal onClose={()=> setOpenModal(false)}/>
+                )}
             </div>
         </InforItems>
         </ItemsCarrinho>

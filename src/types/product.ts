@@ -10,6 +10,7 @@ export interface Product{
     descricao: string,
     image_url: string
     categoria: string,
+    imagen_back_url: string,
     variacoes: VariacaoProduto[]
 }
 
@@ -19,6 +20,7 @@ export interface CriarProduto {
     descricao: string,
     image_url: string,
     categoria: string,
+    imagen_back_url: string,
     variacoes: VariacaoProduto[]
 }
 
@@ -45,4 +47,11 @@ export interface DadosCep {
     estado: string
     regiao: string
 
+}
+
+export interface ProductsResponse{
+  data: Product[];
+  page: number;
+  totalPages: number;
+  limit: number;
 }

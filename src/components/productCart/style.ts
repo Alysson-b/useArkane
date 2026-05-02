@@ -26,16 +26,16 @@ export const HeaderMenu = styled.div`
         gap: 2rem;
         width: 100%;
     }
-    button{
+    /* button{
         cursor: pointer;
         padding: 4px 20px;
         border: none;
         border-radius: 6px;
-        color: #000000;
-        background: #b4b4b4;
+        color: #ffffff;
+        background: transparent;
         font-family: "roboto", sans-serif;
-        font-size: 0.9rem;
-        font-weight: 500;
+        font-size: 1rem;
+        font-weight: 700;
         transition: 0.5s ease-in-out;
 
         &:hover{
@@ -43,7 +43,7 @@ export const HeaderMenu = styled.div`
             transform: scale(1.01);
             color: #1f1f1f;
     }
-    }
+    } */
     
 `;
 
@@ -156,3 +156,45 @@ export const Loading = styled.div`
 
     
 `
+
+export const Pagination = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 30px 0;
+`;
+export const PageNumber = styled.button<{ active?: boolean }>`
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid ${({ active }) => (active ? "#3b82f6" : "transparent")};
+    background: ${({ active }) => (active ? "#e6f0ff" : "transparent")};
+    color: ${({ active }) => (active ? "#2563eb" : "#555")};
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: ${({ active }) => (active ? "#e6f0ff" : "#f5f5f5")};
+    }
+`;
+export const NextButton = styled.button`
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    margin-left: 10px;
+    background: transparent;
+    border: none;
+    color: #555;
+    font-weight: 500;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #e6f0ffdc;
+        color: #ccc;
+        border-radius: 4px;
+        padding: 10px;
+        color: #000;
+    }
+`;

@@ -5,13 +5,15 @@ import pix from "../../../../public/assets/pix.png"
 import selo1 from "../../../../public/assets/selo google.png"
 import selo2 from "../../../../public/assets/selo segurança.png"
 import selo3 from "../../../../public/assets/selo ssl.png"
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { PoliticaTrocas } from "../../../pages/Devolucao/Devolucao";
 import { PoliticaEnvio } from "../../../pages/frete/freteEntrega";
 import { PoliticaPrivacidade } from "../../../pages/privacidade/Privacidade";
 import { TermosUso } from "../../../pages/termoUso/TermoUso";
 import Button from "../../common/Button";
+import { Avaliacoes_usuarios } from "../../../types/user";
+import { avaliacoesUsuarios } from "../../../services/product.service";
 
 
 
@@ -19,7 +21,22 @@ function FooterSection(){
 
     const navigate = useNavigate()
     const [modalAtivo, setModalAtivo] = useState<string | null>(null)
+    const [avaliacoes, setAvaliacoes] = useState<Avaliacoes_usuarios[]>([])
+    const location = useLocation()
 
+
+    async function buscarAvaliacoesUsuarios() {
+        try{
+            const data = await avaliacoesUsuarios()
+            setAvaliacoes(data)
+        }catch(err){
+            console.error(err)
+        }
+    }
+        
+    useEffect(()=>{
+        buscarAvaliacoesUsuarios()
+    },[])
     const fecharModal= ()=>{
         setModalAtivo(null)
     }
@@ -39,30 +56,45 @@ function FooterSection(){
         }
     },[modalAtivo])
 
+    
+    if (!avaliacoes.length) return null
     return(
-        <>
+        <>  
+        {location.pathname === "/" && (
             <AvaliaçoesStyled>
                 <div className="Title">
                     <h2>O QUE ESTAO FALANDO SOBRE NÓS</h2>
                 </div>
                 <div className="cards">
-                    <div className="card">
-                        <div className="title">
-                            <i className="fa-solid fa-user"></i>
-                            <div className="stars">
-                                <h2>Alisson barbosa</h2>
-                                <i>⭐️⭐️⭐️⭐️⭐️</i>
+                    {avaliacoes.map((item) =>(
+                        <div className="card" key={item.estrelas}>
+                            <div className="title">
+                                <i className="fa-solid fa-user"></i>
+                                <div className="stars">
+                                    <h2>{item.usuario_nome}</h2>
+                                    <div className="boxStars">
+                                        {[1,2,3,4,5].map((star)=> (
+                                            <i key={star} 
+                                            className={star<= item.estrelas ? 
+                                                "fa-solid fa-star" : 
+                                            "fa-regular fa-star"}>
+                                            </i>
+                                            ))}
+                                    </div>
                             </div>
                         </div>
-
                         <div className="comentario">
-                            <p>“Qualidade absurda, tecido muito confortável,<br />
-                                muito confrtavel e resistente e ainda por cima encaixa muito bem no corpo”
+                            <h2>{item.produto_nome}</h2>
+                            <p>“{item.comentario.length > 100 
+                                ? item.comentario.slice(0, 100)+ "..."
+                                : item.comentario}”
                             </p>
                         </div>
                     </div>
+                    ))}
                 </div>
             </AvaliaçoesStyled>
+            )}
         <Footer>
 
             <div>

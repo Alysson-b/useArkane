@@ -15,14 +15,23 @@ export const  ItemsCarrinho = styled.div`
         flex-direction: column;
         width: 120px;
         height: 120px;
-        gap: 8px;
+        gap: 20px;
         object-fit: contain;
         cursor: pointer;
         margin: 0 1rem;
+        
+        img{
+            min-width: 120px;
+            min-height: 180px;
+            object-fit: contain;
+            
+        }
+
     }
     .fotos{
         display: flex;
         align-items: flex-start;
+        gap: 4rem;
     }
 
     
@@ -30,37 +39,41 @@ export const  ItemsCarrinho = styled.div`
     export const  ItemImage = styled.div`
 
     img{
-        max-width: 500px;
+        min-width: 600px;
+        max-height: 500px;
         width: 100%; 
         object-fit: contain;
         cursor: pointer;
+        
     }
     `
     export const  InforItems = styled.div`
-        
         .descriçao{
-        display: flex;
-        justify-content: flex-start;
-        flex-direction: column;
-        gap: 1rem;
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            gap: 1rem;
+            
         }
         h1{
-        font-size: 2.5rem;
-        font-family: 'roboto', sans-serif;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        display: flex;
-        align-items: center;
-        gap: 2rem;
+            font-size: 2.5rem;
+            font-family: 'roboto', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
         }
         .fa-heart{
             font-size: 30px;
             color: #fd0a0a;
         }
         p{
-        font-size: 1.2rem;
-        font-family: 'roboto', sans-serif;
-        font-weight: 400;
+            font-size: 1.2rem;
+            font-family: 'roboto', sans-serif;
+            font-weight: 400;
+            max-width: 700px;
+            
         }
         .descriçaoPreco{
             display: flex;
@@ -266,7 +279,17 @@ export const  ItemsCarrinho = styled.div`
         }
         }
 
-
+        .avaliarProduto{
+            padding: 0.5rem;
+            color: rgb(66, 66, 66);
+            background-color: transparent;
+            border: 1px solid #ffffff99;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 1.5em;
+            transition: all 0.3s ease;
+        }
         
 
     `

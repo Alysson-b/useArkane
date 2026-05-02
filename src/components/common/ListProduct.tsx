@@ -19,8 +19,8 @@ function ListaDeProdutos() {
     useEffect(() => {
         async function carregarProdutos() {
         try {
-            const data = await getProducts();
-            setProduct(data);
+            const data = await getProducts({limit: 1000});
+            setProduct(data.data);
         } catch (err) {
             console.log(err);
         } finally {

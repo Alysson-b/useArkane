@@ -1,13 +1,25 @@
-import { CriarProduto, Product, ProductUpdateDTO } from "../types/product"
+import { CriarProduto, Product, ProductsResponse, ProductUpdateDTO } from "../types/product"
+import { Avaliacoes_usuarios, EnviarAvaliçaoDTO } from "../types/user"
 import { api } from "./api"
 
-export async function getProducts(): Promise<Product[]> {
-    const {data} = await api.get("/api/produtos")
-    return data.data
+export async function getProducts(params?: {page?: number; limit?: number}): Promise<ProductsResponse> {
+    const {data} = await api.get("/api/produtos", {params})
+    return data
 }
-export async function getProductsId(id: string): Promise<Product> {
+export async function getProductsId(id: string ): Promise<Product> {
     const {data} = await api.get(`/api/produtos/${id}`)
     return data
+}
+
+export async function avaliacoesUsuarios(): Promise<Avaliacoes_usuarios[]>{
+    const {data} = await api.get(`/api/avaliacoes`)
+    return data
+}
+
+export async function EnviarAvaliacao(body: EnviarAvaliçaoDTO): Promise<Avaliacoes_usuarios>{
+    const {data} = await api.post(`/api/avaliacoes`, body)
+    return data
+    
 }
 
 export async function postProducts(produto: CriarProduto): Promise<CriarProduto> {
@@ -25,7 +37,6 @@ export async function updateProducts(id: string, produto: ProductUpdateDTO): Pro
 export async function deleteProduct(id: string): Promise<Product> {
     const {data} = await api.delete(`/api/produtos/${id}`)
     return data
-    
 }
 
 

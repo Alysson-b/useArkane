@@ -423,9 +423,9 @@ export const ContainerAdmin = styled.div`
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
 }
-.preview > img {
+.imagens > img {
     border-radius: 12px;
-    max-width: 400px;
+    max-width: 300px;
     width: 100%;
     object-fit: cover;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
@@ -915,3 +915,156 @@ export const Section = styled.div`
         color: #0847f7;
     }
 `
+
+
+export const ModalAvaliaçoes = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: aliceblue;
+    width: 30%;
+    min-height: 30%;
+    border-radius: 4px;
+    color: #ccc;
+    padding: 1rem;
+    font-family: "open sans", sans-serif;
+    gap: 1rem;
+    position: relative;
+    h2{
+      font-size: 28px;
+      font-weight: 600;
+      color: #000000;
+    }
+    .miniContainer{
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .user{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        p{
+          font-size: 18px;
+          font-weight: 700;
+          color: #444444;
+        }
+
+        .userIcon{
+          background-color: #fff;
+          width: 50px;
+          height: 50px;
+          border: 1px solid #ccc;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          
+          .fa-user{
+            color: #808080;
+            font-size: 25px;
+          }}
+        
+        
+      }
+      .text{
+        max-width: 500px;
+        max-height: 100px;
+        min-width: 500px;
+        min-height: 100px;
+        padding: 1rem;
+        font-size: 18px;
+        font-weight: 600;
+        color: #444444;
+      }
+
+    }
+    .fa-star{
+          font-size: 20px;
+          margin-top: 0.2rem;
+    }
+
+    .fa-regular{
+      color: #ccc;
+    }
+    .fa-solid{
+      color: gold;
+    }
+
+    button {
+        width: 20%;
+        padding: 0.7rem 1rem;
+        border: none;
+        border-radius: 8px;
+        background-color: #000000dc;
+        color: rgb(255, 255, 255);
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.5s ease-in-out;
+
+        &:hover {
+        background-color: #000000cc;
+        color: rgb(255, 255, 255);
+        }
+      }
+    button:disabled{
+          background-color: #ccc;
+        }
+
+    .CLOSE{
+      button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 7%;
+        padding: 0.3rem;
+        border: none;
+        border-radius: 8px;
+        background-color: #000000dc;
+        color: rgb(255, 255, 255);
+        cursor: pointer;
+        position: absolute;
+        top: 4%;
+        right: 2%;
+      }
+    }
+
+`
+
+export const ErroAvaliacaoStyled = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: aliceblue;
+    flex-direction: column;
+    width: 30%;
+    min-height: 20%;
+    border-radius: 4px;
+    color: #ccc;
+    padding: 1rem;
+    font-family: "open sans", sans-serif;
+    gap: 1rem;
+
+    p{
+      font-size: 25px;
+      color: #4d4d4d;
+    }
+
+    button{
+      width: 20%;
+        padding: 0.7rem 1rem;
+        border: none;
+        border-radius: 8px;
+        background-color: #000000dc;
+        color: rgb(255, 255, 255);
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.5s ease-in-out;
+
+        &:hover {
+        background-color: #000000cc;
+        color: rgb(255, 255, 255);
+        }
+    }
+  `

@@ -10,7 +10,7 @@ const Input = ({label, id, ...props}: InputProps) =>{
     return (
         <div>
             <label>{label}</label>
-            <input  type="text" id={label} {...props} />
+            <input type="text" id={label} {...props} />
         </div>
     )
 }

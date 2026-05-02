@@ -12,6 +12,7 @@ function ModalAdmin() {
     const [preco, setPreco] = useState<string>("");
     const [descricao, setDescricao] = useState("");
     const [imageUrl, setImageUrl] = useState("");
+    const [imageBackUrl, setImageBackUrl] = useState("");
     const [categoria, setCategoria] = useState("");
     const [estoque, setEstoque] = useState<string>("");
     const [carregar, setCarregar] = useState(false);
@@ -40,9 +41,10 @@ function ModalAdmin() {
             image_url: imageUrl,
             categoria,
             variacoes,
+            imagen_back_url: imageBackUrl,
         });
 
-        if (!nome || !descricao || !categoria || !imageUrl) {
+        if (!nome || !descricao || !categoria || !imageUrl || !imageBackUrl) {
             toast.error("Preencha todos os campos do produto");
             return;
         }
@@ -57,6 +59,7 @@ function ModalAdmin() {
         setEstoque("");
         setCor("");
         setTamanho("");
+        setImageBackUrl("")
 
         } catch (err: any) {
             toast.error(err?.response?.data?.message || "Erro ao cadastrar Produto");
@@ -100,6 +103,7 @@ function ModalAdmin() {
             setDescricao(data.descricao);
             setCategoria(data.categoria);
             setImageUrl(data.image_url);
+            setImageBackUrl(data.imagen_back_url)
             setVariacoes(data.variacoes || []);
             console.log("STATE variacoes:", data.variacoes);
             console.log("DATA COMPLETA:", data);
@@ -134,7 +138,7 @@ function ModalAdmin() {
         try{
             if(!id) return
 
-            if (!nome || !descricao || !categoria || !imageUrl) {
+            if (!nome || !descricao || !categoria || !imageUrl || !imageBackUrl) {
             toast.error("Preencha todos os campos")
             return
         }
@@ -152,7 +156,8 @@ function ModalAdmin() {
             descricao,
             image_url: imageUrl,
             categoria,
-            variacoes: variacoesParaEnviar
+            variacoes: variacoesParaEnviar,
+            imagen_back_url: imageBackUrl,
         }
             await updateProducts(id, produtoAtualizado)
 
@@ -168,6 +173,7 @@ function ModalAdmin() {
             setImageUrl("");
             setCategoria("");
             setVariacoes([]);
+            setImageBackUrl("")
             
 
         }
@@ -198,8 +204,15 @@ function ModalAdmin() {
                 value={imageUrl}
                 id="img"
                 name="img"
-                placeholder="Insira a url da imagem"
+                placeholder="Insira a url da imagem FRENTE"
                 onChange={(e) => setImageUrl(e.target.value)}
+                />
+                <Input
+                value={imageBackUrl}
+                id="imgBack"
+                name="imgBack"
+                placeholder="Insira a url da imagem COSTA"
+                onChange={(e) => setImageBackUrl(e.target.value)}
                 />
                 <select
                 name="categoria"
@@ -230,7 +243,7 @@ function ModalAdmin() {
                 name="cor"
                 id="cor"
                 value={cor}
-                disabled={!nome || !descricao || !imageUrl || !categoria}
+                disabled={!nome || !descricao || !imageUrl || !categoria || !imageBackUrl}
                 onChange={(e) => setCor(e.target.value)}
                 >
                 <option value="">Selecione um cor:</option>
@@ -242,7 +255,7 @@ function ModalAdmin() {
                 <option value="cinza">cinza</option>
                 </select>
 
-                <Input
+                <Input   
                 value={preco}
                 id="preco"
                 name="preco"
@@ -279,7 +292,10 @@ function ModalAdmin() {
 
 
             <div className="preview">
+                <div className="imagens">
                     {imageUrl && <img src={imageUrl} alt="Preview" />}
+                    {imageBackUrl && <img src={imageBackUrl} alt="Preview" />}
+                </div>
             <div className="CardPreview">
             {variacoes?.map((v) => (
                 <div key={v.id ?? v.tempId} className="variacao-card">

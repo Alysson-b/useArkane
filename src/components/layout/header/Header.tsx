@@ -6,6 +6,7 @@ import { useAuth } from "../../../contexts/auth/useAuth";
 import {  useState } from "react";
 import { useCart } from "../../../contexts/provider_car/useCart";
 
+
 interface Props {
     LoginModal: () => void;
 }

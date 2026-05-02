@@ -207,7 +207,7 @@ export const CardModal = styled.div`
 
 
 export const AvaliaçoesStyled = styled.div`
-      display: none;
+      display: flex;
       flex-direction: column;
       text-align: center;
       gap: 5rem;
@@ -251,26 +251,50 @@ export const AvaliaçoesStyled = styled.div`
           justify-content: space-between;
           gap: 10px;
 
-          h2{
-            font-family: "Montserrat", sans-serif;
-          }
-
+          
           .fa-user{
             border: 0.5px solid black;
-            padding: 1rem;
+            padding: 1.2rem;
             border-radius: 50%;
             color: #ccc;
           }
-
+          
           .stars{
             display: flex;
             flex-direction: column;
-            align-items: flex-end;
+            gap: 10px;
+              h2{
+                font-family: "Montserrat", sans-serif;
+                font-size: 1.8rem;
+                color: #ccc;
+              }
+            .boxStars{
+              display: flex;
+              gap: 0.5rem;
+            }
+            .fa-solid{
+              color: gold;
+              font-style: italic;
+              text-shadow:
+                0 1px 4px rgba(0,0,0,0.6),
+                0 0 5px rgba(0,0,0,0.4);
+              
+            }
+            .fa-regular{
+              color: #ccc;
+            }
           }
         }
         .comentario{
           width: 100%;
           flex-wrap: wrap;
+
+          h2{
+            font-size: 20px;
+            color: #2e2d2d;
+            margin: 0 0 0.8rem ;
+          }
+
           p{
             display: flex;
             align-items: center;
