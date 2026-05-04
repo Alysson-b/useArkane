@@ -90,7 +90,7 @@ export function LoginModal({fecharLogin}: {fecharLogin: ()=> void}){
             <CadastroContainer >
                 <form onSubmit={salvarCadastro}>
                     <h2>CADASTRO</h2>
-                    <Input name="nome" id={"nome"} placeholder="Digite seu Nome" required/>
+                    <Input name="nome" id={"nome"} placeholder="Digite seu Nome completo" minLength={15} required/>
                     <Input name="email" id={"email"} placeholder="Digite seu Email"  required/>
                     <Input name="senha" type="password" id={"senha"} placeholder="Digite seu Senha"  required/>
                     <Button  children={"Cadastrar"}/>

@@ -154,6 +154,7 @@ export const Cadastro_completo = () => {
             placeholder="Nome completo"
             onChange={(e) => setName(e.target.value)}
             disabled={isLogin}
+            minLength={15}
             required
           />
           <Input

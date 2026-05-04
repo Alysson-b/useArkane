@@ -37,7 +37,7 @@ function Header({ LoginModal }: Props) {
                 <li>Camisas</li>
                 <li>Regatas</li>
                 <li>Oversized</li>
-                <li>Bermudas</li>
+                <li>outros</li>
             </ul>
             </div>
         </Nav>

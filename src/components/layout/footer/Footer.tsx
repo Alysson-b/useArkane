@@ -23,6 +23,8 @@ function FooterSection(){
     const [modalAtivo, setModalAtivo] = useState<string | null>(null)
     const [avaliacoes, setAvaliacoes] = useState<Avaliacoes_usuarios[]>([])
     const location = useLocation()
+    const limintName = 14
+    
 
 
     async function buscarAvaliacoesUsuarios() {
@@ -71,7 +73,9 @@ function FooterSection(){
                             <div className="title">
                                 <i className="fa-solid fa-user"></i>
                                 <div className="stars">
-                                    <h2>{item.usuario_nome}</h2>
+                                    <h2>{String(item.usuario_nome).length > limintName 
+                                    ? String(item.usuario_nome).slice(0, limintName) + "..." 
+                                    : String(item.usuario_nome) || ""}</h2>
                                     <div className="boxStars">
                                         {[1,2,3,4,5].map((star)=> (
                                             <i key={star} 

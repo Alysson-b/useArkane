@@ -71,6 +71,7 @@ export function ProductList(){
         <Cards id="produtos-container">
             {filtrados.length ? (
                 filtrados.map(Product => {
+                    console.log(Product)
                     const preco = Product.variacoes?.[0]?.preco
                     const precoNumero = preco ? parseFloat(preco) : 0
                     return(

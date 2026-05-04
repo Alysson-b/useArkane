@@ -263,6 +263,7 @@ export const AvaliaçoesStyled = styled.div`
             display: flex;
             flex-direction: column;
             gap: 10px;
+            align-items: flex-end;
               h2{
                 font-family: "Montserrat", sans-serif;
                 font-size: 1.8rem;

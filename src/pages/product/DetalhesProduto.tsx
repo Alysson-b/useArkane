@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useCart } from "../../contexts/provider_car/useCart";
 import { useEffect, useState } from "react";
 import { Product } from "../../types/product";
-import { getProducts } from "../../services/product.service";
+import {  getProductsId } from "../../services/product.service";
 import {
   ContainerError,
   InforItems,
@@ -34,14 +34,11 @@ export default function DetalhesProduto() {
         async function buscarProdutos() {
             try{
                 setLoading(true);
-                const response = await getProducts()
-                const produtos = response.data
-                const produtoEncontrado = produtos.find((p) => String(p.id) === id);
-
-                setProduto(produtoEncontrado || null);
-
+                const response = await getProductsId(id!)
+                setProduto(response)
             }catch(err){
                 console.error("Erro ao carregar produto:", err);
+                setProduto(null)
 
             } finally{
                 setLoading(false)
