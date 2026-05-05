@@ -6,6 +6,21 @@ export async function getProducts(params?: {page?: number; limit?: number}): Pro
     const {data} = await api.get("/api/produtos", {params})
     return data
 }
+
+export async function getProductsNovidade(params?: {page?: number; limit?: number}): Promise<ProductsResponse> {
+    const {data} = await api.get("/api/produtos", {params: {...params}})
+    return data
+}
+
+export async function getProductsMasculino(params?: {page?: number; limit?: number}): Promise<ProductsResponse> {
+    const {data} = await api.get("/api/produtos", {params: {...params, categoria: "masculina"}})
+    return data
+}
+
+export async function getProductsFemino(params?: {page?: number; limit?: number}): Promise<ProductsResponse> {
+    const {data} = await api.get("/api/produtos", {params: {...params, categoria: "feminina"}})
+    return data
+}
 export async function getProductsId(id: string ): Promise<Product> {
     const {data} = await api.get(`/api/produtos/${id}`)
     return data

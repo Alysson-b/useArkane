@@ -12,10 +12,6 @@ import { ListarUsuarios } from "../components/common/ListUsuarios";
 import ListarPedidosUsuarios from "../components/common/ListPedidos";
 
 
-
-
-
-
 export function AppRoutes(){
     return(
             <BrowserRouter>

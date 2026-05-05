@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Card, Cards, HeaderMenu, Loading, NextButton, PageNumber, Pagination } from "./style";
 import { useSearch } from "../../contexts/provider_search/useSeach";
 import { getProducts } from "../../services/product.service";
-
-
+import { CarrosselProdutos } from "./CarrosselProdutos";
 
 export function ProductList(){
     const [product, setProduct] = useState<Product[]>([])
@@ -16,6 +15,9 @@ export function ProductList(){
     const [totalPages,setTotalPages] = useState(1)
     const limite = 8
     const [hoverId, setHoverId] = useState<string | null>(null)
+    
+
+
 
     useEffect(()=> {
         async function limitePorPagina() {
@@ -27,6 +29,7 @@ export function ProductList(){
                     })
                     const produto = response.data || []
                     setProduct(produto)
+                    console.log(produto)
                     setTotalPages(response.totalPages)
             }catch(err){
                 console.log(err)
@@ -64,33 +67,26 @@ export function ProductList(){
         }
     return(
         <HeaderMenu>
-            <h1>
-                Coleçao Nova <div className="line"></div>
-            </h1>
-
-        <Cards id="produtos-container">
-            {filtrados.length ? (
-                filtrados.map(Product => {
-                    console.log(Product)
-                    const preco = Product.variacoes?.[0]?.preco
-                    const precoNumero = preco ? parseFloat(preco) : 0
-                    return(
-
-                    <Card key={Product.id}
-                    onMouseEnter={()=> setHoverId(Product.id)}
-                    onMouseLeave={()=> setHoverId(null)}>
-                        <img src={hoverId === Product.id ? Product.imagen_back_url : Product.image_url} alt={Product.nome} />
-                        <h3> {preco ? `R$ ${Number(preco).toFixed(2)}` : "Indisponível"}</h3>
-                        <p>Em até 2 x {(precoNumero / 2).toFixed(2)}</p>
-                        <button onClick={() => navigate(`/produto/${Product.id}`)}>Comprar</button>
-                    </Card>
-                )})
-            ) : (
-                <p className="produto-nao-encontrado">Produto não encontrado!</p>
-            )}
-
-        </Cards>  
             
+                <Cards id="produtos-container">
+                    {filtrados.length ? (
+                        filtrados.map(Product => {
+                            const preco = Product.variacoes?.[0]?.preco
+                            const precoNumero = preco ? parseFloat(preco) : 0
+                            return(
+                                <Card onClick={() => navigate(`/produto/${Product.id}`)} key={Product.id}
+                                    onMouseEnter={()=> setHoverId(Product.id)}
+                                    onMouseLeave={()=> setHoverId(null)}>    
+                                    <img draggable={false} src={hoverId === Product.id ? Product.imagen_back_url : Product.image_url} alt={Product.nome} />
+                                    <h3> {preco ? `R$ ${Number(preco).toFixed(2)}` : "Indisponível"}</h3>
+                                    <p>Em até 2 x {(precoNumero / 2).toFixed(2)}</p>
+                                    <button onClick={() => navigate(`/produto/${Product.id}`)}>Comprar</button>
+                                </Card>
+                        )})
+                    ) : (
+                        <p className="produto-nao-encontrado">Produto não encontrado!</p>
+                    )}
+                </Cards>  
         <Pagination>
             <div className="pages">
 
@@ -107,7 +103,13 @@ export function ProductList(){
             )}
             </div>
         </Pagination>
-
+        
+        <CarrosselProdutos title="Nova coleçao"/>
+        <CarrosselProdutos title="Masculino"  categoria="masculina" />
+        <CarrosselProdutos title="Feminino" categoria="feminina" />
+        
+        
+        
         </HeaderMenu>
 
     )
