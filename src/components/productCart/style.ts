@@ -13,7 +13,7 @@ export const HeaderMenu = styled.div`
         font-weight: 700;
         font-size: 3em;
         padding: 1rem;
-        text-shadow: 0 2px 4px rgba(255, 255, 255, 0.7);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.25);
     }
     
     .pages{
@@ -50,6 +50,19 @@ export const HeaderMenu = styled.div`
         }
         
     }
+
+    .banner{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 2rem auto;
+        img{
+            max-height: 600px;
+            min-width: 1800px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+    }
     
 `;
 
@@ -57,12 +70,12 @@ export const Cards = styled.div`
     display: grid;
     gap: 3rem;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    margin: 8rem auto; 
+    margin: 0 auto; 
     width: 100%;
     max-width: 1200px; 
 
     .produto-nao-encontrado {
-        grid-column: 1 / -1;
+    grid-column: 1 / -1;
     text-align: center;
     font-size: 1.9rem;
     color: #ffffff; 
@@ -239,28 +252,30 @@ export const CardsProducts = styled.div`
 
     #scrollRight{
         position: absolute;
-        top: 30%;
+        top: 35%;
         left: 0.5%;
         padding: 5rem 0;
         background-color: #0000000a;
         border: none;
-        font-size: 3rem;
         color: #ffffff;
         cursor: pointer;
         z-index: 1;
+        font-size: 2rem;
+        opacity: .8
 
     }
     #scrollLeft{
         position: absolute;
-        top: 30%;
+        top: 35%;
         right: 0.5%;
         padding: 5rem 0;
         background-color: #0000000a;
         border: none;
-        font-size: 3rem;
         color: #ffffff;
         cursor: pointer;
         z-index: 1;
+        font-size: 2rem;
+        opacity: .8
 
     }
 `

@@ -892,29 +892,75 @@ export const Section = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    background: aliceblue;
-    height: 10vh;
     color: #000;
-
-    p{
+    min-height: 220px;
+    padding: 1rem;
+    background: linear-gradient(90deg, #f3f3f3, #ebebeb);
+    border-radius: 12px;
+    width: 95%;
+    margin: 2rem auto;
+    box-shadow: 0 8px 25px rgba(0,0,0,.15);
+    
+    
+    .beneficio{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      transition: .3s ease;
+      
+      &:hover{
+        transform: translateY(-5px);
+      }
+      
+      i{
+        font-size: 3rem;
+        color: #686868;
+      }
+      span{
+        font-family: "open sans", sans-serif;
+        font-size: 22px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 1rem;
+        .fa-percent{
+          font-size: 1rem;
+        }
+      }
+      p{
         font-family: 'Montserrat', sans-serif;
         font-weight: 600;
-        font-size: 1.3rem;
-        margin: 1.1rem;
+        font-size: 14px;
+        opacity: .8;
         display: flex;
         align-items: center;
         gap: 1rem;
+        text-align: center;
+        max-width: 220px;
+        line-height: 1.4;
+        color: #000000bd;
+      }
+      .fa-pix{
+        color: #57f518de;
+      }
+      .fa-truck-fast{
+        color: #c20202af;
+      }
+      .fa-arrows-spin{
+        color: #055bdbd7;
+      }
+      .fa-bolt{
+        color: gold;
+      }
+      .fa-credit-card{
+        color: #888787cc;
+      }
     }
-    i{
-        font-size: 1.5em;
-    }
-    .fa-pix{
-        color: #27fa27;
-    }
-    .fa-truck-fast{
-        color: #0847f7;
-    }
+
 `
+
+
 
 
 export const ModalAvaliaçoes = styled.div`

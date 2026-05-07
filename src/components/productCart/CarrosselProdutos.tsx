@@ -17,6 +17,7 @@ type Props = {
     const movendo =  useRef(false)
     const start = useRef(0)
     const mousePocisao = useRef(0)
+    const [hoverId, setHoverId] = useState<string | null>(null)
 
     function handleMouse(e: any){
         
@@ -46,7 +47,6 @@ type Props = {
         scrollRef.current.scrollBy({ left: -400, behavior: "smooth" });
         }
 
-
     function scrollRight() {
         scrollRef.current.scrollBy({ left: 400, behavior: "smooth" });
     }
@@ -70,7 +70,13 @@ type Props = {
         <div className="PREV">
             <div className="titles">
                 <h1>{title}</h1>
-                <p>ver tudo</p>
+                <p onClick={()=> {
+                    if(categoria){
+                        navigate(`/produtos/${categoria}`)
+                    }else{
+                        navigate("/produtos")
+                    }
+                }}>ver tudo</p>
             </div>
 
             <CardsProducts id="produtos-container" ref={scrollRef}
@@ -87,8 +93,10 @@ type Props = {
                     <CardProducts
                     key={prod.id}
                     onClick={() => navigate(`/produto/${prod.id}`)}
+                    onMouseEnter={()=> setHoverId(prod.id)}
+                    onMouseLeave={()=> setHoverId(null)}
                     >
-                    <img src={prod.image_url} alt={prod.nome} />
+                    <img draggable={false} src={hoverId === prod.id ? prod.imagen_back_url : prod.image_url} alt={prod.nome} />
                     <h3>{preco ? `R$ ${Number(preco).toFixed(2)}` : "Indisponível"}</h3>
                     <p>Em até 2x {(precoNumero / 2).toFixed(2)}</p>
                     </CardProducts>

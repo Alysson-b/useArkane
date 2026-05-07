@@ -10,6 +10,7 @@ import { Sobre } from "../pages/sobre/Sobre";
 import { Cadastro_completo } from "../components/dadosUsuario/Dados_usuarios";
 import { ListarUsuarios } from "../components/common/ListUsuarios";
 import ListarPedidosUsuarios from "../components/common/ListPedidos";
+import { ProductFilter } from "../components/productCart/ProductsFilter";
 
 
 export function AppRoutes(){
@@ -18,6 +19,8 @@ export function AppRoutes(){
                 <Routes >
                     <Route element={<Layout/>}>
                         <Route path="/" element={<ProductList/>}/>
+                        <Route path="/produtos" element={<ProductFilter/>}/>
+                        <Route path="/produtos/:categoria" element={<ProductFilter/>}/>
                         <Route path="/sobre" element={<Sobre/>}/>
                         <Route path="/produto/:id" element={<DetalhesProduto/>}/>
                         <Route path="/carrinho" element={<CartPage/>}/>  

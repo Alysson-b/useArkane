@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 import { Product } from "../../types/product";
-import { useNavigate } from "react-router-dom";
-import { Card, Cards, HeaderMenu, Loading, NextButton, PageNumber, Pagination } from "./style";
+
+import { HeaderMenu, Loading } from "./style";
 import { useSearch } from "../../contexts/provider_search/useSeach";
 import { getProducts } from "../../services/product.service";
 import { CarrosselProdutos } from "./CarrosselProdutos";
+import { Section } from "../common/Styled.Global";
 
 export function ProductList(){
     const [product, setProduct] = useState<Product[]>([])
     const [loading, setLoading] = useState(true)
-    const navigate = useNavigate()
     const { search } = useSearch()
     const [page, setPage] = useState(1)
-    const [totalPages,setTotalPages] = useState(1)
+    
     const limite = 8
-    const [hoverId, setHoverId] = useState<string | null>(null)
+    
     
 
 
@@ -29,8 +29,7 @@ export function ProductList(){
                     })
                     const produto = response.data || []
                     setProduct(produto)
-                    console.log(produto)
-                    setTotalPages(response.totalPages)
+                    
             }catch(err){
                 console.log(err)
             }finally {
@@ -45,16 +44,7 @@ export function ProductList(){
         setPage(1)
     }, [search])
 
-    const termo = (search ?? "").toLowerCase()
-
-    const filtrados = product.filter(p => {
-    const nome = (p.nome ?? "").toLowerCase()
-    const categoria = (p.descricao ?? "").toLowerCase()
     
-        
-    return nome.includes(termo) || categoria.includes(termo)
-    })
-
     if (loading) {
             return (
             <Loading>
@@ -65,51 +55,52 @@ export function ProductList(){
             </Loading>
             )
         }
+
+    if(!product){
+        <div>
+            <h2>Produto nao encontrado</h2>
+        </div>
+    }
     return(
         <HeaderMenu>
-            
-                <Cards id="produtos-container">
-                    {filtrados.length ? (
-                        filtrados.map(Product => {
-                            const preco = Product.variacoes?.[0]?.preco
-                            const precoNumero = preco ? parseFloat(preco) : 0
-                            return(
-                                <Card onClick={() => navigate(`/produto/${Product.id}`)} key={Product.id}
-                                    onMouseEnter={()=> setHoverId(Product.id)}
-                                    onMouseLeave={()=> setHoverId(null)}>    
-                                    <img draggable={false} src={hoverId === Product.id ? Product.imagen_back_url : Product.image_url} alt={Product.nome} />
-                                    <h3> {preco ? `R$ ${Number(preco).toFixed(2)}` : "Indisponível"}</h3>
-                                    <p>Em até 2 x {(precoNumero / 2).toFixed(2)}</p>
-                                    <button onClick={() => navigate(`/produto/${Product.id}`)}>Comprar</button>
-                                </Card>
-                        )})
-                    ) : (
-                        <p className="produto-nao-encontrado">Produto não encontrado!</p>
-                    )}
-                </Cards>  
-        <Pagination>
-            <div className="pages">
+            <CarrosselProdutos title="Nova coleçao"/>
 
-                {Array.from({length: totalPages}, (_, index)=> {
-                    const pageNumber = index + 1
-                    return(
-                        <PageNumber key={pageNumber} onClick={()=> setPage(pageNumber)}
-                        >{pageNumber}</PageNumber>
-                    )
-                })}
-                
-            {page < totalPages && (
-                <NextButton onClick={()=> setPage(page + 1)}> Seguinte <i className="fa-solid fa-angle-right"></i></NextButton>
-            )}
-            </div>
-        </Pagination>
-        
-        <CarrosselProdutos title="Nova coleçao"/>
-        <CarrosselProdutos title="Masculino"  categoria="masculina" />
-        <CarrosselProdutos title="Feminino" categoria="feminina" />
-        
-        
-        
+            <Section>
+                <div className="beneficio">
+                    <i className="fa-brands fa-pix"></i>
+                    <span>3<i className="fa-solid fa-percent"></i> Off</span>
+                    <p>Desconto para compras no PIX</p>
+                </div>
+                <div className="beneficio">
+                    <i className="fa-solid fa-truck-fast"></i>
+                    <span>Frete Grátis</span>
+                    <p>para compras acima de R$149</p>
+                </div>
+                <div className="beneficio">
+                    <i className="fa-solid fa-arrows-spin"></i>
+                    <span>Troca Fácil</span>
+                    <p>rapida e confiavél</p>
+                </div>
+                <div className="beneficio">
+                    <i className="fa-solid fa-bolt"></i>
+                    <span>Tecido respirável</span>
+                    <p>Alta performance garantida</p>
+                </div>
+                <div className="beneficio">
+                    <i className="fa-solid fa-credit-card"></i>
+                    <span>ate 6x</span>
+                    <p>parcelas no cartão de credito</p>
+                </div>
+            </Section>
+            <CarrosselProdutos title="Masculino"  categoria="masculina" />
+
+                <div className="banner">
+                <img src="https://res.cloudinary.com/dgefmot0t/image/upload/v1778120033/bannerPremiun_i3hfu3.png" alt="" />
+
+                </div>
+
+            <CarrosselProdutos title="Feminino" categoria="feminina" />
+            
         </HeaderMenu>
 
     )
