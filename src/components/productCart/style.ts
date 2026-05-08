@@ -342,3 +342,146 @@ export const CardProducts = styled.div`
     
 
 `
+
+
+export const SectionFilter =  styled.div`
+    display: flex;
+    padding: 0.5rem 2rem;
+    width: 100%;
+    .btns{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        h2{
+            font-family: "open sans", sans-serif;
+            font-weight: 700;
+            font-size: 2rem;
+        }
+        button{
+            padding: 0.6rem 0.9rem;
+            background-color: #ffffff;
+            border-radius: 12px;
+            border: none;
+            color: #000000d3;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            &:hover{
+                background-color: #dfdfdf;
+                color: #1d1d1d;
+            }
+        }
+    }
+    .container{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 4rem;
+        box-shadow: 0 2px 06px rgba(73, 73, 73, 0.25);
+        padding: 0.9rem;
+        border-radius: 14px;
+        .barra{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            box-shadow: 0 4px 08px rgba(255,255,255,0.25);
+            padding: 1rem;
+            border-radius: 4px;
+            background-color: #dfdfdf;
+            color: black;
+            .preco{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-family: "open sans", sans-serif;
+                font-size: 0.8rem;
+                color: #000000;
+            }
+            input{
+                width: 100%;
+                background-color: #000000;
+                appearance: none;
+                border-radius: 5px;
+                height: 4px;
+                outline: none;
+            }
+            .slide::-webkit-slider-thumb{
+                appearance: none;
+                width: 20px;
+                height: 20px;
+                background-color: #ffffff;
+                border-radius: 50%;
+                cursor: pointer;
+
+                
+            }
+            
+          
+        }
+        .filters{
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            gap: 1rem;
+            border-radius: 4px;
+            box-shadow: 0 4px 08px rgba(255,255,255,0.25);
+            background-color: #dfdfdf;
+            color: #000000;
+
+            p{
+                font-size: 2.2rem;
+            }
+            input{
+                max-width: 5.5rem;
+                padding:  0.4rem 0.8rem;
+                background-color: transparent;
+                border: none;
+                background-color: #dfdfdf;
+                color: #000000;
+                &:focus{
+                    outline: none;
+                }
+            }
+            fieldset{
+                padding: 0.3rem;
+                box-shadow: 0 02px 08px rgba(255,255,255,0.25);
+                background-color: #dfdfdf;
+                color: #000000;
+            }
+        }
+        .TamanhosCores{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 02px 08px rgba(255,255,255,0.25);
+            padding: 1rem;
+            border-radius: 12px;
+            background-color: #dfdfdf;
+            color: #000000;
+            
+        select{
+            appearance: none;
+            background-color: transparent;
+            border: 1px solid #444;
+            color: #000000;
+            padding: 6px;
+            border-radius: 10px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            border: none;
+            box-shadow: 0 2px 8px rgba(24, 24, 24, 0.93);
+            }
+            select:focus{
+                outline: none;
+            }
+
+        option{
+                background: #111;
+                color: #fff;
+                padding: 10px;
+            }
+        }
+    }
+`
