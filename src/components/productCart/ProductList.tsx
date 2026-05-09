@@ -95,7 +95,7 @@ export function ProductList(){
             <CarrosselProdutos title="Masculino"  categoria="masculina" />
 
                 <div className="banner">
-                <img src="https://res.cloudinary.com/dgefmot0t/image/upload/v1778120033/bannerPremiun_i3hfu3.png" alt="" />
+                <img src="https://res.cloudinary.com/dgefmot0t/image/upload/v1778292515/bannerPremiun_hjfpwh.png" alt="" />
 
                 </div>
 

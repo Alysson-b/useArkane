@@ -58,9 +58,10 @@ export const HeaderMenu = styled.div`
         margin: 2rem auto;
         img{
             max-height: 600px;
-            min-width: 1800px;
+            width: 100%;
             object-fit: cover;
-            border-radius: 12px;
+            border-radius: 3rem;
+            padding: 0 1.5rem ;
         }
     }
     
