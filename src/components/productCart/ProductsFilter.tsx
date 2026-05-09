@@ -5,7 +5,7 @@ import { Card, Cards, HeaderMenu, Loading, NextButton, PageNumber, Pagination, S
 import { useSearch } from "../../contexts/provider_search/useSeach";
 
 import { api } from "../../services/api";
-
+import Button from "../common/Button";
 
 export function ProductFilter(){
     const [product, setProduct] = useState<Product[]>([])
@@ -17,9 +17,10 @@ export function ProductFilter(){
     const limit = 8
     const [hoverId, setHoverId] = useState<string | null>(null)
     const {categoria} =  useParams()
+
+    const [abrirFiltro, setAbrirFiltro] = useState(false)
+
     
-
-
 
     useEffect(()=> {
         async function limitePorPagina() {
@@ -69,23 +70,29 @@ export function ProductFilter(){
     return(
         <HeaderMenu>
             <SectionFilter>
-                <div className="container">
+                <div className="containerSection">
+
+                <Button onClick={()=>{setAbrirFiltro(prev=> !prev)}} className="btnFilter"><i className="fa-solid fa-filter"></i>Filtrar produtos</Button>
+                {abrirFiltro && (
+
+                    <div className="container">
                     <div className="btns">
                         <div>
-                            <h2>Filtros</h2>
+                            <h2>Filtrar produtos por:</h2>
                         </div>
                     </div>
 
-                        <div className="barra"> 
-                            <div className="preco">
-                                <p>0</p>
-                                <p>299</p>
-                            </div>
-                            <div>
-                                <input  min="0" max="299" className="slide"  type="range" />  
-                            </div>
+                <div className="precoContainer">
+                    <p className="titlePreco">Preço:</p>
+                    <div className="barra"> 
+                        <div className="preco">
+                            <p>R$ 89.90</p>
+                            <p>R$ 299.90</p>
                         </div>
-
+                        <div>
+                            <input  min="0" max="299" className="slide"  type="range" />  
+                        </div>
+                    </div>
                     <div className="filters">
                         <fieldset>
                             <legend> Mín </legend>
@@ -97,31 +104,48 @@ export function ProductFilter(){
                             <input type="number" placeholder="00.00"/>
                         </fieldset>
                     </div>
+                </div>
+
+                <div className="containerTamanho">
+                    <p className="titleTamanho">Tamanho:</p>
+                        <div className="TamanhosCores">
+                            <div>
+                                <ul>
+                                    <li>
+                                        <button>P</button>
+                                    </li>
+                                    <li>
+                                        <button>M</button>
+                                    </li>
+                                    <li>
+                                        <button>G</button>
+                                    </li>
+                                    <li>
+                                        <button>GG</button>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    <p className="titleTamanho">Cores:</p>
+                    
                     <div className="TamanhosCores">
-                        <div>
-                            <select name="" id="" value="0">
-                                <option value="">Tamanho</option>
-                                <option value="P">P</option>
-                                <option value="M">M</option>
-                                <option value="G">G</option>
-                                <option value="GG">GG</option>
-                            </select>
-                        </div>
-                        <div>
-                            <select name="" id="" >
-                                <option value="">Cores</option>
-                                <option value="">preta</option>
-                                <option value="">branca</option>
-                                <option value="">azul</option>
-                                <option value="">vermelha</option>
-                            </select>
-                        </div>
+                        <input disabled className="cor" type="color" value="#000" />
+                        <input disabled  className="cor" type="color" value="#fff" />
+                        <input disabled  className="cor" type="color" value="#0766f3" />
+                        <input disabled  className="cor" type="color" value="#f10505" />
+                        <input disabled  className="cor" type="color" value="#5c5b5b" />
                     </div>
+                </div>
+
                     <div className="btns">
                             <button>Aplicar filtros</button>
                             <button>limpar filtros</button>
                     </div>
                 </div>
+            )}
+            </div>
+
                 <Cards id="produtos-container">
                     {filtrados.length ? (
                         filtrados.map(Product => {

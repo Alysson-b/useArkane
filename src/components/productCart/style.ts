@@ -348,6 +348,34 @@ export const SectionFilter =  styled.div`
     display: flex;
     padding: 0.5rem 2rem;
     width: 100%;
+    
+    .containerSection{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        position: relative;
+
+        .btnFilter{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border-radius: 12px;
+            padding: 0.5rem 1rem;
+            border: none;
+            font-family: "roboto", sans-serif;
+            font-weight: 500;
+            font-size: .9rem;
+            cursor: pointer;
+            transition: all .5s ease;
+            &:hover{
+                transform: scale(1.05);
+                background-color: #dfdfdf;
+                color: #0a0a0a;
+            }
+        }
+    }
     .btns{
         width: 100%;
         display: flex;
@@ -356,7 +384,7 @@ export const SectionFilter =  styled.div`
         h2{
             font-family: "open sans", sans-serif;
             font-weight: 700;
-            font-size: 2rem;
+            font-size: 1.2rem;
         }
         button{
             padding: 0.6rem 0.9rem;
@@ -380,6 +408,78 @@ export const SectionFilter =  styled.div`
         box-shadow: 0 2px 06px rgba(73, 73, 73, 0.25);
         padding: 0.9rem;
         border-radius: 14px;
+        animation: fadeInLeft 1s ease;
+        position: absolute;
+        top: 5%;
+
+        @keyframes fadeInLeft {
+            0% {
+                    
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+            100% {
+                    
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .precoContainer{
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            .titlePreco{
+                font-family: "roboto", sans-serif;
+                font-weight: 400;
+                font-size: 1.1rem;
+            }
+        }
+        .containerTamanho{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            .titleTamanho{
+                font-family: "roboto", sans-serif;
+                font-weight: 400;
+                font-size: 1.1rem;
+            }
+            ul{
+            display: flex;
+            list-style: none;
+            gap: 1.4rem;
+            border-radius: 8px;
+            border: none;
+            font-family: "roboto", sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            transition: all;
+            
+            li{
+            border-radius: 6px;
+            border: 0.1rem solid #ccc;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            user-select: none;
+            color: #0a0a0a;
+            
+            button{
+                background-color: transparent;
+                border: none;
+            }
+            }
+            li:hover{
+                background-color: black;
+                color: aliceblue;
+                button{
+                    color: #dfdfdf;
+                }
+            }
+            }
+        }
         .barra{
             display: flex;
             flex-direction: column;
@@ -389,11 +489,12 @@ export const SectionFilter =  styled.div`
             border-radius: 4px;
             background-color: #dfdfdf;
             color: black;
+
             .preco{
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                font-family: "open sans", sans-serif;
+                font-family: "Roboto", sans-serif;
                 font-size: 0.8rem;
                 color: #000000;
             }
@@ -412,11 +513,9 @@ export const SectionFilter =  styled.div`
                 background-color: #ffffff;
                 border-radius: 50%;
                 cursor: pointer;
-
-                
             }
             
-          
+        
         }
         .filters{
             display: flex;
@@ -427,6 +526,7 @@ export const SectionFilter =  styled.div`
             box-shadow: 0 4px 08px rgba(255,255,255,0.25);
             background-color: #dfdfdf;
             color: #000000;
+            
 
             p{
                 font-size: 2.2rem;
@@ -440,9 +540,18 @@ export const SectionFilter =  styled.div`
                 color: #000000;
                 &:focus{
                     outline: none;
+                    
                 }
+                
+            }
+            input[type="number"]::-webkit-outer-spin-button,
+            input[type="number"]::-webkit-inner-spin-button{
+                -webkit-appearance: none;
             }
             fieldset{
+                font-family: "open sans", sans-serif;
+                font-weight: 300;
+                font-size: 14px;
                 padding: 0.3rem;
                 box-shadow: 0 02px 08px rgba(255,255,255,0.25);
                 background-color: #dfdfdf;
@@ -453,35 +562,59 @@ export const SectionFilter =  styled.div`
             width: 100%;
             display: flex;
             align-items: center;
-            justify-content: space-between;
             box-shadow: 0 02px 08px rgba(255,255,255,0.25);
             padding: 1rem;
             border-radius: 12px;
             background-color: #dfdfdf;
             color: #000000;
             
-        select{
-            appearance: none;
-            background-color: transparent;
-            border: 1px solid #444;
-            color: #000000;
-            padding: 6px;
-            border-radius: 10px;
-            font-size: 15px;
-            cursor: pointer;
-            transition: 0.3s ease;
-            border: none;
-            box-shadow: 0 2px 8px rgba(24, 24, 24, 0.93);
-            }
+            select{
+                appearance: none;
+                background-color: transparent;
+                border: 1px solid #444;
+                color: #000000;
+                padding: 6px;
+                border-radius: 10px;
+                font-size: 15px;
+                cursor: pointer;
+                transition: 0.3s ease;
+                border: none;
+                box-shadow: 0 2px 8px rgba(24, 24, 24, 0.93);
+                }
             select:focus{
-                outline: none;
+                    outline: none;
+                }
+            option{
+                    background: #111;
+                    color: #fff;
+                    padding: 10px;
+                }
             }
+            
+        .cor {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: 2px solid #03030383;
+            cursor: pointer;
+            background: none;
+            padding: 1px;
+            overflow: hidden;
+            transition: 0.2s;
+        }
 
-        option{
-                background: #111;
-                color: #fff;
-                padding: 10px;
-            }
+        .cor::-webkit-color-swatch-wrapper {
+            padding: 1px;
+        }
+
+        .cor::-webkit-color-swatch {
+            border: none;
+            border-radius: 50%;
+        }
+
+        .cor.ativa {
+            border: 2px solid #222;
+            box-shadow: 0 0 0 3px white;
         }
     }
 `

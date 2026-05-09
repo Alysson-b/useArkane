@@ -945,7 +945,7 @@ export const Section = styled.div`
         color: #57f518de;
       }
       .fa-truck-fast{
-        color: #c20202af;
+        color: #ee5d09ce;
       }
       .fa-arrows-spin{
         color: #055bdbd7;
