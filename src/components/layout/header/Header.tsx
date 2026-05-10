@@ -42,6 +42,15 @@ function Header({ LoginModal }: Props) {
             </div>
         </Nav>
 
+            <div className="search-container">
+                <input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                type="text"
+                placeholder="Buscar"
+                />
+                <i className="fa-solid fa-magnifying-glass"></i>
+            </div>
         <NavBar>
             <div className="navLink">
             <ul>
@@ -52,22 +61,10 @@ function Header({ LoginModal }: Props) {
             </div>
 
             <div className="Usuario">
-            <div className="search-container">
-                <input
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                type="text"
-                placeholder="Buscar"
-                />
-                <i className="fa-solid fa-magnifying-glass"></i>
-            </div>
 
             <div className="user-actions">
                 {!logado ? (
                 <>
-                    <h3 className="logar" onClick={LoginModal}>
-                    Entrar
-                    </h3>
                     <i
                     className="fa-solid fa-user"
                     onClick={LoginModal}
@@ -76,9 +73,6 @@ function Header({ LoginModal }: Props) {
                 </>
                 ) : (
                 <>
-                    <h3 onClick={logout} className="logar">
-                    Sair
-                    </h3>
                     <i
                     onClick={logout}
                     className="fa-solid fa-right-from-bracket"

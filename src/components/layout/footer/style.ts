@@ -224,13 +224,15 @@ export const AvaliaçoesStyled = styled.div`
       display: flex;
       align-items: center;
       justify-content: space-evenly;
+      margin: 1rem 0;
       
       .card{
         max-width: 20%;
         min-height: 100px;
+        height: 250px;
         display: flex;
         flex-direction: column;
-        background-color: aliceblue;
+        background-color: #ffffffe5;
         align-items: center;
         padding: 1.5rem;
         color: black;
@@ -239,7 +241,7 @@ export const AvaliaçoesStyled = styled.div`
         transition: all 0.3s ease;
         &:hover{
             transform: translateY(-5px); 
-            box-shadow: 0 10px 25px rgba(219, 219, 219, 0.2); /* sombra elegante */
+            box-shadow: 0 10px 25px rgba(219, 219, 219, 0.2); 
           }
         
         
@@ -264,22 +266,19 @@ export const AvaliaçoesStyled = styled.div`
             flex-direction: column;
             gap: 10px;
             align-items: flex-end;
-              h2{
+
+            h2{
                 font-family: "Montserrat", sans-serif;
-                font-size: 1.8rem;
-                color: #ccc;
+                font-size: 1.6rem;
+                color: #1f1e1e;
               }
+
             .boxStars{
               display: flex;
               gap: 0.5rem;
             }
             .fa-solid{
-              color: gold;
-              font-style: italic;
-              text-shadow:
-                0 1px 4px rgba(0,0,0,0.6),
-                0 0 5px rgba(0,0,0,0.4);
-              
+              color: #ecc203;
             }
             .fa-regular{
               color: #ccc;
@@ -291,8 +290,9 @@ export const AvaliaçoesStyled = styled.div`
           flex-wrap: wrap;
 
           h2{
+            font-family: "roboto", sans-serif;
             font-size: 20px;
-            color: #2e2d2d;
+            color: #868585;
             margin: 0 0 0.8rem ;
           }
 

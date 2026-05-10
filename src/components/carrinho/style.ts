@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const CartContainer = styled.div`
   width: 100%;
+  min-height: 400px;
   border-radius: 12px;
   box-shadow: 0 0px 25px rgba(196, 195, 195, 0.2);
   padding: 20px;
@@ -27,7 +28,6 @@ export const CartContainer = styled.div`
     width: 30%;
     border-radius: 8px;
     height: auto;
-    background-color: #0303035c;
     align-items: flex-start;
     flex-direction: column;
     padding: 12px;
@@ -238,9 +238,11 @@ export const CartContainer = styled.div`
   }
 `;
 export const CartItem = styled.div`
+  width: 100%;
+  height: 250px;
   display: flex;
   align-items: flex-start;
-  justify-content: space-around;
+  justify-content: space-between;
   gap: 3rem;
   margin-bottom: 8px;
   padding: 1rem;
@@ -248,18 +250,20 @@ export const CartItem = styled.div`
 
   .inforCart {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 5rem;
     width: 100%;
   }
   .descDiv {
     h3 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.4rem;
       margin-bottom: 0.5rem;
     }
     p {
       font-family: "roboto", sans-serif;
       font-weight: 400;
-      font-size: 0.8em;
+      font-size: 1em;
     }
     .quantidade {
       display: flex;
@@ -298,7 +302,7 @@ export const CartItem = styled.div`
   }
 
   img {
-    width: 40%;
+    width: 8rem;
     object-fit: contain;
   }
 
@@ -306,6 +310,7 @@ export const CartItem = styled.div`
     font-family: "roboto", sans-serif;
     font-size: 20px;
     font-weight: 900;
+    
   }
   .valorPag {
     width: 100%;
@@ -315,9 +320,15 @@ export const CartItem = styled.div`
     flex-direction: column;
 
     p {
-      font-size: 12px;
+      font-size: 0.8rem;
       font-family: "roboto", sans-serif;
       font-weight: 900;
+    }
+
+    h3{
+      font-family: "roboto", sans-serif;
+      font-weight: 600;
+      font-size: 1.4rem;
     }
   }
 `;

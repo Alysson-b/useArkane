@@ -18,6 +18,39 @@ export const Navigation = styled.div`
     border-bottom: 1px solid white;
     background: #000;
 
+    .search-container {
+        position: relative;
+        display: flex;
+        width: 40%;
+        
+        .fa-magnifying-glass {
+            position: absolute;
+            top: 50%;
+            right: 3%; 
+            transform: translateY(-50%);
+            color: #080808;
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+    }
+    input{
+        display: flex;
+        align-items: center;
+        min-width: 100%;
+        border: none;
+        padding: 12px 18px;
+        border-radius: 4px;
+        outline: none;
+
+    }
+    input::placeholder
+    {
+        font-size: 1.3em;
+        font-family: "roboto", sans-serif;
+        font-weight: 600;
+        color: #888;
+    }
+
     
 `;
 
@@ -80,35 +113,18 @@ export const Nav = styled.div`
 export const NavBar = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-
+    gap: 2rem;
     h3{
             font-weight: 700;
             font-family: "Montserrat", sans-serif;
             font-size: 1rem;
             cursor: pointer;
     }
-    input{
-        border: none;
-        padding: 12px 18px;
-        border-radius: 8px;
-        margin-top: 0.5rem;
-
-    }
-    input::placeholder
-    {
-        font-size: 1.3em;
-        font-family: "roboto", sans-serif;
-        font-weight: 600;
-        color: #888;
-    }
-
-    
     
     div{
         display: flex;
         align-items: center;
-        gap: 1rem;
+        gap: 5rem;
 
         i{
             font-size: 1.5em;
@@ -137,16 +153,15 @@ export const NavBar = styled.div`
     align-items: center;
     justify-content: center;
     
+    
 }
 .user-actions {
     display: flex;
     align-items: center;
-    margin-bottom: 1.5rem;
-
+    
     .menuContainer{
         position: relative;
         
-
         button{
             width: 100%;
             min-width: 180px;
@@ -181,21 +196,6 @@ export const NavBar = styled.div`
         gap: 10px;
     }
 }
-.search-container {
-        position: relative;
-        display: flex;
-        margin-bottom: 2rem;
-        
-
-        i.fa-magnifying-glass {
-            position: absolute;
-            top: 59%;
-            right: 5%; 
-            transform: translateY(-50%);
-            color: #888;
-            font-size: 1em;
-        }
-    }
 
     .navLink{
         display: flex;

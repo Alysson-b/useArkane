@@ -30,14 +30,15 @@ export const HeaderMenu = styled.div`
         .titles{
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            justify-content: space-between;
+            padding: 0 2rem 0 0;
             
             p{
-                font-size: 14px;
+                font-size: 20px;
                 font-family: "open sans";
                 font-weight: 400;
                 margin-top: 0.9rem;
-                color: #f5f5f5ab;
+                color: #f5f5f5d7;
                 border-bottom: 1.5px solid #ffffff54;
                 cursor: pointer;
                 transition: all 0.3s ease;
@@ -73,7 +74,8 @@ export const Cards = styled.div`
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     margin: 0 auto; 
     width: 100%;
-    max-width: 1200px; 
+    max-width: 1200px;
+    min-height: 600px;
 
     .produto-nao-encontrado {
     grid-column: 1 / -1;
@@ -353,8 +355,6 @@ export const SectionFilter =  styled.div`
     .containerSection{
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
         position: relative;
 
         .btnFilter{
@@ -411,7 +411,7 @@ export const SectionFilter =  styled.div`
         border-radius: 14px;
         animation: fadeInLeft 1s ease;
         position: absolute;
-        top: 5%;
+        top: 8%;
 
         @keyframes fadeInLeft {
             0% {
@@ -563,6 +563,7 @@ export const SectionFilter =  styled.div`
             width: 100%;
             display: flex;
             align-items: center;
+            justify-content: space-between;
             box-shadow: 0 02px 08px rgba(255,255,255,0.25);
             padding: 1rem;
             border-radius: 12px;

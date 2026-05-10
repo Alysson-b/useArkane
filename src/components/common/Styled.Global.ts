@@ -892,12 +892,10 @@ export const Section = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    color: #000;
     min-height: 220px;
-    padding: 1rem;
-    background: linear-gradient(90deg, #f3f3f3, #ebebeb);
+    background: linear-gradient(90deg, #7a7a7a, #3f3f3f);
     border-radius: 12px;
-    width: 95%;
+    width: 100%;
     margin: 2rem auto;
     box-shadow: 0 8px 25px rgba(0,0,0,.15);
     
@@ -914,7 +912,7 @@ export const Section = styled.div`
       
       i{
         font-size: 3rem;
-        color: #686868;
+        color: #ffffff;
       }
       span{
         font-family: "open sans", sans-serif;
@@ -924,6 +922,7 @@ export const Section = styled.div`
         align-items: center;
         gap: 5px;
         margin-top: 1rem;
+        color: aliceblue;
         .fa-percent{
           font-size: 1rem;
         }
@@ -939,7 +938,7 @@ export const Section = styled.div`
         text-align: center;
         max-width: 220px;
         line-height: 1.4;
-        color: #000000bd;
+        color: #fff;
       }
       .fa-pix{
         color: #57f518de;
