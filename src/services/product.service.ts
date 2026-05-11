@@ -55,4 +55,10 @@ export async function deleteProduct(id: string): Promise<Product> {
 }
 
 
+export async function filtrarProdutoss(params? : {tamanho: string, precoMin: string, precoMax: string, cor: string}): Promise<Product[]> {
+    const {data} = await api.get("/api/produtos/filtros", {params: {...params}})
+    return data
+    
+}
+
 

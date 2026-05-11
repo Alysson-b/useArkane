@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Product } from "../../types/product";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { Card, Cards, HeaderMenu, Loading, NextButton, PageNumber, Pagination, SectionFilter } from "./style";
 import { useSearch } from "../../contexts/provider_search/useSeach";
 
 import { api } from "../../services/api";
 import Button from "../common/Button";
+import { filtrarProdutoss } from "../../services/product.service";
 
 export function ProductFilter(){
     const [product, setProduct] = useState<Product[]>([])
@@ -17,45 +18,110 @@ export function ProductFilter(){
     const limit = 8
     const [hoverId, setHoverId] = useState<string | null>(null)
     const {categoria} =  useParams()
-
     const [abrirFiltro, setAbrirFiltro] = useState(false)
+    const [searchParams, setSearchParams] = useSearchParams()
 
+    const [corFiltrada, setCorFltrada] = useState(
+        searchParams.get("cor") || "")
+
+    const [precoMin, setPrecoMin] = useState(
+        searchParams.get("precoMin") || "0")
+
+    const [precoMax, setPrecoMax] = useState(
+        searchParams.get("precoMax") || "299" )
+
+    const [tamanhoFiltrada, setTamanhoFltrado] = useState(
+        searchParams.get("tamanho") || "")
+
+    const [produtosFiltrados, setProdutosFiltrados] = useState<Product[]>([])
+    
+    
+    async function buscarProdutoPorFiltros() {
+        
+        try {
+            console.log("entrou no try")
+            const  data  = await filtrarProdutoss({
+                tamanho: tamanhoFiltrada,
+                cor: corFiltrada,
+                precoMin,
+                precoMax
+            })
+            console.log("chegou aqui", data)
+            setProdutosFiltrados(data)
+            
+            
+        }catch(err){
+            console.error(err)
+            console.log("erro ao buscar os produtos")
+        }
+    }
+
+    function limparFiltros(){
+        if(corFiltrada || tamanhoFiltrada || precoMax || precoMin){
+            setCorFltrada("")
+            setTamanhoFltrado("")
+            setPrecoMax("")
+            setPrecoMin("")
+        }
+    }
+
+    useEffect(() => {
+        buscarProdutoPorFiltros()
+            const params: Record<string, string> = {}
+            if (corFiltrada) {
+                params.cor = corFiltrada
+            }
+            if (tamanhoFiltrada) {
+                params.tamanho = tamanhoFiltrada
+            }
+            if (precoMin) {
+                params.precoMin = precoMin
+            }
+            if (precoMax) {
+                params.precoMax = precoMax
+            }
+            setSearchParams(params)
+            
+    }, [corFiltrada, tamanhoFiltrada, precoMin, precoMax])
     
 
     useEffect(()=> {
         async function limitePorPagina() {
             try{
                 setLoading(true)
-                    const response = await api.get("/api/produtos", {
-                        params:{
+                const response = await api.get("/api/produtos", {
+                    params:{
                             categoria,
                             page,
                             limit: limit}})
-                    setProduct(response.data.data)
-                    setTotalPages(response.data.totalPages)
-            }catch(err){
-                console.log(err)
-            }finally {
-                setLoading(false)
-            }
-        }
-        limitePorPagina()
-    },[categoria, page])
-
-
-    useEffect(() => {
-        setPage(1)
-    }, [search])
-
-    const termo = (search ?? "").toLowerCase()
-
-    const filtrados = product.filter(p => {
-    const nome = (p.nome ?? "").toLowerCase()
-    const categoria = (p.descricao ?? "").toLowerCase()
-    
-        
-    return nome.includes(termo) || categoria.includes(termo)
-    })
+                            setProduct(response.data.data)
+                            setTotalPages(response.data.totalPages)
+                        }catch(err){
+                            console.log(err)
+                        }finally {
+                            setLoading(false)
+                        }
+                    }
+                    limitePorPagina()
+                },[categoria, page])
+                
+                
+                useEffect(() => {
+                    setPage(1)
+                }, [search])
+                
+                const termo = (search ?? "").toLowerCase()
+                
+                const filtrados = product.filter(p => {
+                    const nome = (p.nome ?? "").toLowerCase()
+                    const categoria = (p.descricao ?? "").toLowerCase()
+                    
+                    
+                    return nome.includes(termo) || categoria.includes(termo)
+                })
+                
+    const possuiFiltro = corFiltrada || tamanhoFiltrada || precoMin !== "0" || precoMax !== "299"
+    const produtosRenderizaos = possuiFiltro ? produtosFiltrados : filtrados
 
     if (loading) {
             return (
@@ -96,12 +162,12 @@ export function ProductFilter(){
                     <div className="filters">
                         <fieldset>
                             <legend> Mín </legend>
-                            <input type="number" placeholder="00.00"/>
+                            <input value={precoMin} onChange={(e)=> setPrecoMin(e.target.value)} type="number" placeholder="00.00"/>
                         </fieldset>
                         <p>:</p>
                         <fieldset>
                             <legend> Máx </legend>
-                            <input type="number" placeholder="00.00"/>
+                            <input value={precoMax}  onChange={(e)=> setPrecoMax(e.target.value)} type="number" placeholder="00.00"/>
                         </fieldset>
                     </div>
                 </div>
@@ -112,16 +178,16 @@ export function ProductFilter(){
                             <div>
                                 <ul>
                                     <li>
-                                        <button>P</button>
+                                        <button type="button" onClick={()=> setTamanhoFltrado("P")}>P</button>
                                     </li>
                                     <li>
-                                        <button>M</button>
+                                        <button type="button" onClick={()=> setTamanhoFltrado("M")}>M</button>
                                     </li>
                                     <li>
-                                        <button>G</button>
+                                        <button type="button" onClick={()=> setTamanhoFltrado("G")}>G</button>
                                     </li>
                                     <li>
-                                        <button>GG</button>
+                                        <button type="button" onClick={()=> setTamanhoFltrado("GG")}>GG</button>
                                     </li>
                                 </ul>
                             </div>
@@ -130,25 +196,26 @@ export function ProductFilter(){
                     <p className="titleTamanho">Cores:</p>
                     
                     <div className="TamanhosCores">
-                        <input disabled className="cor" type="color" value="#000" />
-                        <input disabled  className="cor" type="color" value="#fff" />
-                        <input disabled  className="cor" type="color" value="#0766f3" />
-                        <input disabled  className="cor" type="color" value="#f10505" />
-                        <input disabled  className="cor" type="color" value="#5c5b5b" />
+                        <button  style={{background: "#000"}} type="button" onClick={()=> setCorFltrada("preto")} className="cor"></button>
+                        <button  style={{background: "#fff"}} type="button" onClick={()=> setCorFltrada("branco")} className="cor"></button>
+                        <button  style={{background: "#0f38f3"}} type="button" onClick={()=> setCorFltrada("azul")} className="cor"></button>
+                        <button  style={{background: "#e40808"}} type="button" onClick={()=> setCorFltrada("vermelho")} className="cor"></button>
+                        <button  style={{background: "#979797"}} type="button" onClick={()=> setCorFltrada("cinza")} className="cor"></button>
+            
                     </div>
                 </div>
 
                     <div className="btns">
-                            <button>Aplicar filtros</button>
-                            <button>limpar filtros</button>
+                            <button >Aplicar filtros</button>
+                            <button onClick={()=> limparFiltros()}>limpar filtros</button>
                     </div>
                 </div>
             )}
             </div>
 
                 <Cards id="produtos-container">
-                    {filtrados.length ? (
-                        filtrados.map(Product => {
+                    {produtosRenderizaos.length ? (
+                        produtosRenderizaos.map(Product => {
                             const preco = Product.variacoes?.[0]?.preco
                             const precoNumero = preco ? parseFloat(preco) : 0
                             return(
