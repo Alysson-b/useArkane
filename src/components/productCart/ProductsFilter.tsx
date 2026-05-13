@@ -25,15 +25,24 @@ export function ProductFilter(){
         searchParams.get("cor") || "")
 
     const [precoMin, setPrecoMin] = useState(
-        searchParams.get("precoMin") || "0")
+        searchParams.get("precoMin") || "89.90")
 
     const [precoMax, setPrecoMax] = useState(
-        searchParams.get("precoMax") || "299" )
+        searchParams.get("precoMax") || "299.90" )
 
     const [tamanhoFiltrada, setTamanhoFltrado] = useState(
         searchParams.get("tamanho") || "")
 
     const [produtosFiltrados, setProdutosFiltrados] = useState<Product[]>([])
+
+    
+    const min = 89
+    const max = 299
+    const valor = Number(precoMax)
+
+    const porct = ((valor - min) / (max - min)) * 100
+    
+    
     
     
     async function buscarProdutoPorFiltros() {
@@ -156,7 +165,12 @@ export function ProductFilter(){
                             <p>R$ 299.90</p>
                         </div>
                         <div>
-                            <input  min="0" max="299" className="slide"  type="range" />  
+                            <input style={{background: `linear-gradient( 
+                            to right,
+                            #808080 0%,
+                            #000000 ${porct}%,
+                            #ddd ${porct}%,
+                            #ddd 100%)`}} value={precoMax} onChange={(e)=>setPrecoMax(e.target.value)}  min="89.90" max="299" className="slide"  type="range" />  
                         </div>
                     </div>
                     <div className="filters">

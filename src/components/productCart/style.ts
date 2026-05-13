@@ -511,7 +511,7 @@ export const SectionFilter =  styled.div`
                 appearance: none;
                 width: 20px;
                 height: 20px;
-                background-color: #ffffff;
+                background-color: #0c0c0c;
                 border-radius: 50%;
                 cursor: pointer;
             }
