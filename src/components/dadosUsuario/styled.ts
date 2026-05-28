@@ -19,6 +19,8 @@ export const ContainerCadastroStyled = styled.div`
     
   }
 
+  
+
   input
   {
     width: 100%;
@@ -66,7 +68,7 @@ export const ContainerCadastroStyled = styled.div`
 
     button {
     padding: 13px 28px;
-    border-radius: 10px;
+    border-radius: 4px;
     border: none;
     font-size: 14px;
     font-family: inherit;
@@ -75,16 +77,30 @@ export const ContainerCadastroStyled = styled.div`
     cursor: pointer;
     transition: all .3s ease-in-out;
 
-    
+    .btns{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
     &#alterar{
-        background-color: #0d4b01af;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30%;
+      background-color: #0d4b01af;
     }
     &#alterar:hover{
         background-color: #189100ea;
     }
 
     &#salvar{
-        background-color: #2563eb;
+      width: 100%;
+      background-color: #2563eb;
+      
+    }
+    &#salvar:disabled{
+        background-color: rgba(87, 85, 85, 0.75);
     }
     &#salvar:hover{
         background-color: #1d4ed8;

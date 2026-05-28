@@ -498,6 +498,7 @@ export const DadosCompra = styled.div`
     }
     .containerImg {
       perspective: 1000px;
+      
 
       .imagemCartao {
         position: relative;
@@ -515,9 +516,10 @@ export const DadosCompra = styled.div`
           img{
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            border-radius: 20px;
+            object-fit: contain;
+            
           }
+          
 
           .dadosFront{
             position: absolute;
@@ -530,12 +532,13 @@ export const DadosCompra = styled.div`
                 font-size: 1.3rem;
                 font-weight: 600;
                 letter-spacing: 2px;
-                margin-bottom: 0.5rem;
+                margin: 1.7rem;
             }
             .dados{
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                margin-left: 1.7rem;
 
                 .nomeCartao{
                     font-size: 14px; 
@@ -544,6 +547,7 @@ export const DadosCompra = styled.div`
 
                 .validadeCartao{
                     font-size: 14px;
+              
                 }
             }
           }
@@ -559,11 +563,11 @@ export const DadosCompra = styled.div`
             img{
                 width: 100%; 
                 height: 100%; 
-                object-fit: cover; 
-                border-radius: 20px; }
+                object-fit: contain; 
+                }
             .dadosBack{
                 position: absolute;
-                top: 33%;
+                top: 35%;
                 right: 36%;
 
                 .cvv{

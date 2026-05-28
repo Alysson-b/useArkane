@@ -26,9 +26,6 @@ function Pagamentos() {
     const [pesquisarCep, setPesquisarCep] =useState("")
     const [msgFrte, setMsgFrete] = useState("")
     
-
-    
-
     
     const { items } = useCart();
     
@@ -246,14 +243,14 @@ function Pagamentos() {
                         type="text"
                         maxLength={19}
                         value={numeroCard}
-                        placeholder="Número do cartão*  0000-0000-0000-0000"
+                        placeholder="Número do cartão"
                         onChange={(e)=> setNumeroCard(formatarNumero(e.target.value))}
                         />
-                    <input type="text" placeholder="Nome impressono cartão" 
+                    <input type="text" placeholder="Nome impresso no cartão" 
                     onChange={(e)=> setNomeCard(e.target.value)} />
 
                     <div className="validade">
-                        <input value={validCard} type="text" placeholder="Validade* 00/00" 
+                        <input value={validCard} type="text" placeholder="Validade" 
                         onChange={(e)=> {
                             const formatacao = formatarValidade(e.target.value)
                             setValidCard(formatacao)
@@ -276,6 +273,7 @@ function Pagamentos() {
 
                             <div className="frontCard">
                                 <img src={front_card} alt="Frente do cartao" />
+                                
                                 <div className="dadosFront">
                                     <p className="numeroCartao">{numeroCard}</p>
                                     <div className="dados">

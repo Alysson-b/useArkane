@@ -141,6 +141,27 @@ export const Cadastro_completo = () => {
     }
     
   }
+
+//     function formatarCPF(cpf: string) {
+//       cpf = cpf.replace(/\D/g, "");
+
+//     return cpf.replace(
+//         /(\d{3})(\d{3})(\d{3})(\d{2})/,
+//         "$1.$2.$3-$4"
+//     );
+// }
+
+//   function formatarTel(tel: string) {
+//       tel = tel.replace(/\D/g, "");
+
+//     return tel.replace(
+//         /(\d{2})(\d{5})(\d{4})/,
+//         "($1) $2-$3"
+//     );
+// }
+
+
+  
   
   return (
     <ContainerCadastroStyled>
@@ -177,6 +198,7 @@ export const Cadastro_completo = () => {
               id="cpf"
               placeholder="CPF"
               required
+              maxLength={11}
             />
             <Input
               type="date"
@@ -193,6 +215,7 @@ export const Cadastro_completo = () => {
               placeholder="Telefone"
               value={telefone}
               onChange={(e) => setTelefone(e.target.value)}
+              maxLength={11}
               required
             />
             <select
@@ -216,6 +239,7 @@ export const Cadastro_completo = () => {
             name="cep"
             id="cep"
             placeholder="CEP"
+            maxLength={8}
             required
           />
 
@@ -280,27 +304,28 @@ export const Cadastro_completo = () => {
           />
         </EnderecoStyled>
 
-        
-            <Button disabled={!isLogin} onClick={()=> buscarDadosUser()} type="button" id="alterar">
-              Alterar Dados
-              </Button>
+      
+
 
             <Button disabled={
-            !name ||
-            !email ||
-            !cpf ||
-            !sexo ||
-            !telefone ||
-            !data_nascimento ||
-            !rua ||
-            !numero ||
-            !complemento ||
-            !bairro ||
-            !cidade ||
-            !estado ||
-            !cep
+              !name ||
+              !email ||
+              !cpf ||
+              !sexo ||
+              !telefone ||
+              !data_nascimento ||
+              !rua ||
+              !numero ||
+              !bairro ||
+              !cidade ||
+              !estado ||
+              !cep
             } type="submit" id="salvar">
               Salvar
+            </Button>
+        
+            <Button disabled={!isLogin} onClick={()=> buscarDadosUser()} type="button" id="alterar">
+              Editar meus Dados
             </Button>
         
       </form>

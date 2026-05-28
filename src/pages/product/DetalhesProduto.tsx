@@ -84,6 +84,8 @@ export default function DetalhesProduto() {
         )
 
     const estoqueAtual = Number(variacaoSelecionada?.estoque ?? 0)
+    console.log(estoqueAtual)
+    
 
     useEffect(()=>{
         if(produto?.image_url){

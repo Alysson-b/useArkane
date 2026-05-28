@@ -2,9 +2,12 @@ import { useEffect, useState } from "react"
 import { CardCarroselStyled} from "./Styled.Global"
 import colection from "../../../public/assets/colection.png"
 import colection3 from "../../../public/assets/colection3.png"
+import colection1 from "../../../public/assets/banner_2.png"
+
+
 
 const Carrosel = ({}) =>{
-    const carroselImgs = [colection, colection3]
+    const carroselImgs = [colection, colection3, colection1]
     const [indexAtual, setIndexAtual]= useState(0)
     
 
