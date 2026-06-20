@@ -84,7 +84,6 @@ export interface Items_do_pedido{
 }
 
 
-
 export interface Pedidos_usuarios{
     pedido_id: number
     status: string

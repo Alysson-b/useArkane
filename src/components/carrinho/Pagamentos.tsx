@@ -9,6 +9,7 @@ import Button from "../common/Button";
 import { DadosCep } from "../../types/product";
 import { getPerfilCompleto, pedidoUsuario } from "../../services/usuarios.services";
 import LoginModal from "../common/Modal";
+import { gerarQrCode } from "../../services/pagamento.service";
 
 
 
@@ -25,6 +26,9 @@ function Pagamentos() {
     const [dadosCep, setDadosCep] = useState<DadosCep>()
     const [pesquisarCep, setPesquisarCep] =useState("")
     const [msgFrte, setMsgFrete] = useState("")
+    const [qrCode, setQrCode] = useState("")
+    const [qrCodeBase64, setQrCodeBase64] = useState("")
+    
     
     
     const { items } = useCart();
@@ -119,6 +123,24 @@ function Pagamentos() {
         }
 }
 
+
+    async function gerarPix() {
+        try{
+            const data = await gerarQrCode({
+                valor: pix,
+                descricao: "Compra Arkane",
+                email: "test@test.com"
+            })
+
+            setQrCode(data.qr_code)
+            setQrCodeBase64(data.qr_code_base64)
+            console.log(data)
+        }catch(error: any){
+            console.log(error)
+            toast.error("Error ao gerar PIX")
+        }
+    }
+
     return (
         <>
         
@@ -205,7 +227,11 @@ function Pagamentos() {
                 ></i>
             <h2> Forma de Pagamento </h2>
 
-            <div className="pagamentoPix" onClick={() => setMetodo("pix")}>
+            <div className="pagamentoPix" onClick={() => {
+                setMetodo("pix") 
+                gerarPix()
+            }}>
+
                 <p>PIX</p>
                 <i className="fa-brands fa-pix"></i>
             </div>
@@ -223,7 +249,21 @@ function Pagamentos() {
             {metodo === "pix" && (
                 <div className="containerPix">
                     <h3>Escaneie o Qr Code!</h3>
-                    <p>Valor: {pix}</p>
+                    <p>Valor: {pix.toFixed(2)}</p>
+
+                    {qrCodeBase64 && (
+                        <img src={`data:image/png;base64,${qrCodeBase64}`} alt="QR Code PIX" />
+                    )}
+
+                    {qrCode && (
+                        <>
+                            <textarea value={qrCode} readOnly />
+
+                            <button onClick={()=>{navigator.clipboard.writeText(qrCode)
+                                toast.success("Código PIX copiado!")
+                            }}>Copiar código PIX</button>
+                        </>
+                    )}
                 </div>
             )}
 
