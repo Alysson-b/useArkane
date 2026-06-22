@@ -9,10 +9,14 @@ import Button from "../common/Button";
 import { DadosCep } from "../../types/product";
 import { getPerfilCompleto, pedidoUsuario } from "../../services/usuarios.services";
 import LoginModal from "../common/Modal";
-import { gerarQrCode } from "../../services/pagamento.service";
+import { creditoDebitoPagamento, gerarQrCode } from "../../services/pagamento.service";
 
 
-
+declare global {
+    interface Window{
+        MercadoPago: any
+    }
+}
 
 function Pagamentos() {
     const navigate = useNavigate();
@@ -28,7 +32,6 @@ function Pagamentos() {
     const [msgFrte, setMsgFrete] = useState("")
     const [qrCode, setQrCode] = useState("")
     const [qrCodeBase64, setQrCodeBase64] = useState("")
-    
     
     
     const { items } = useCart();
@@ -68,6 +71,7 @@ function Pagamentos() {
             return;
         }
         const perfilVerificado = await getPerfilCompleto()
+        
         if(perfilVerificado?.perfilCompleto){
             setView("pagamento")
             return
@@ -126,18 +130,65 @@ function Pagamentos() {
 
     async function gerarPix() {
         try{
+            
             const data = await gerarQrCode({
                 valor: pix,
                 descricao: "Compra Arkane",
-                email: "test@test.com"
+                email: "comprador@gmail.com"
             })
 
             setQrCode(data.qr_code)
             setQrCodeBase64(data.qr_code_base64)
+            
             console.log(data)
+            
         }catch(error: any){
             console.log(error)
             toast.error("Error ao gerar PIX")
+        }
+    }
+
+
+    async function pagamentoCartao() {
+        
+        try{
+
+            if (!window.MercadoPago){
+                toast.error("SDK Mercado Pago nao carregado");
+                return
+            }
+            
+            const mp = new window.MercadoPago("TEST-28c75c79-a640-49f3-a99f-0d82fb2aa5de", 
+                {locale: "pt-BR"})
+            const cleaned = validCard.replace(/\s/g, "");
+            const [mes, ano] = cleaned.split("/")
+
+            
+            const tokenResponse = await mp.createCardToken({
+                cardNumber: numeroCard.replace(/\s/g, ""),
+                cardholderName: nomeCard,
+                cardExpirationMonth: mes,
+                cardExpirationYear: ano,
+                securityCode: cvcCard,
+                identificationType: "CPF",
+                identificationNumber: "12301234567"
+            })
+
+            const token = tokenResponse.id
+            const email = "cliente@email.com"; 
+
+            const data = await creditoDebitoPagamento({
+                token,
+                email: email,
+                parcelas: 1,
+                bandeiraCartao: "visa",
+                tipo: "credito",
+                valor: total
+            })
+            console.log(data)
+        }catch(err){
+            console.log(err)
+            toast.error("Erro ao processar pagamento")
         }
     }
 
@@ -213,6 +264,7 @@ function Pagamentos() {
                 <button id="finalizar" onClick={()=> {
                     verificarUsuario()
                     finalizarCompra()
+                    gerarPix()
                 }
                     }>Finalizar pedido</button>
             </div>
@@ -249,7 +301,6 @@ function Pagamentos() {
             {metodo === "pix" && (
                 <div className="containerPix">
                     <h3>Escaneie o Qr Code!</h3>
-                    <p>Valor: {pix.toFixed(2)}</p>
 
                     {qrCodeBase64 && (
                         <img src={`data:image/png;base64,${qrCodeBase64}`} alt="QR Code PIX" />
@@ -257,9 +308,9 @@ function Pagamentos() {
 
                     {qrCode && (
                         <>
-                            <textarea value={qrCode} readOnly />
+                            <textarea disabled cols={60} rows={8} className="codigo" value={qrCode} readOnly />
 
-                            <button onClick={()=>{navigator.clipboard.writeText(qrCode)
+                            <button className="copiarPix" onClick={()=>{navigator.clipboard.writeText(qrCode)
                                 toast.success("Código PIX copiado!")
                             }}>Copiar código PIX</button>
                         </>
@@ -305,7 +356,7 @@ function Pagamentos() {
                             }}/>
                     </div>
                     
-                    <button type="submit">PAGAR</button>
+                    <button type="submit" onClick={pagamentoCartao}>PAGAR</button>
 
 
                     <div className="containerImg">
@@ -341,6 +392,7 @@ function Pagamentos() {
             )}
             </DadosCompra>
         )}
+
         </>
     );
 }

@@ -10,3 +10,14 @@ export interface PixReq{
     descricao: string
     email: string
 }
+
+
+export interface CreditoDebitoProps {
+    token: string
+    email: string
+    parcelas: number
+    bandeiraCartao: string
+    tipo: string
+    valor: number
+    cpf?: string
+}

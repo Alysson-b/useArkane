@@ -401,6 +401,7 @@ export const DadosCompra = styled.div`
     opacity: 0;
     transform: translateY(20px);
     animation: fade-in-top 0.5s ease-in-out forwards;
+
     h3 {
       font-family: "roboto", sans-serif;
       font-size: 28px;
@@ -416,8 +417,42 @@ export const DadosCompra = styled.div`
       width: 50%;
       border-radius: 12px;
       object-fit: contain;
+      margin-bottom: 0.8rem;
     }
-  }
+
+    .codigo{
+      max-width: 50%;
+      max-height: 130px;
+      min-width: 50%;
+      min-height: 130px;
+      padding: 1rem;
+      font-family: "roboto", sans-serif;
+      font-weight: 500;
+      outline: none;
+      background-color: aliceblue;
+      color: black;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+
+    }
+
+    .copiarPix{
+      padding: 1rem;
+      width: 50%;
+      background-color: #ffffffda;
+      color: black;
+      font-family: "roboto", sans-serif;
+      font-weight: 500;
+      border: none;
+      border-radius: 4px;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+    }
+    .copiarPix:hover{
+        background-color: aliceblue;
+
+      }
+}
   .containerBoleto {
     display: flex;
     justify-content: flex-start;
