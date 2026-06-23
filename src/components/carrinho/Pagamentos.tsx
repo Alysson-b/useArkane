@@ -10,6 +10,7 @@ import { DadosCep } from "../../types/product";
 import { getPerfilCompleto, pedidoUsuario } from "../../services/usuarios.services";
 import LoginModal from "../common/Modal";
 import { creditoDebitoPagamento, gerarQrCode } from "../../services/pagamento.service";
+import { useAuth } from "../../contexts/auth/useAuth";
 
 
 declare global {
@@ -32,10 +33,37 @@ function Pagamentos() {
     const [msgFrte, setMsgFrete] = useState("")
     const [qrCode, setQrCode] = useState("")
     const [qrCodeBase64, setQrCodeBase64] = useState("")
+    const {user} = useAuth()
     
-    
+    const [cpfCard, setCpfCard] = useState("")
     const { items } = useCart();
     
+    const formataCPF = (valor: string) => {
+        return valor
+        .replace(/\D/g, "")
+        .replace(/(\d{3})(\d)/, "$1.$2")
+        .replace(/(\d{3})(\d)/, "$1.$2")
+        .replace(/(\d{3})(\d{1,2})$/, "$1-$2")
+        .slice(0, 14)
+    }
+
+    function bandeiraCard(numero: string) {
+        const num = numero.replace(/\s/g, "")
+        if (/^4/.test(num)) 
+            return "visa"
+
+        if (/^5[1-5]/.test(num)) 
+            return "master"
+
+        if (/^3[47]/.test(num)) 
+            return "amex"
+
+        if (/^(636368|438935|504175|451416|636297)/.test(num)) 
+            return "elo"
+
+        return "visa" 
+    }
+
     const formatarNumero = (value: string) => {
         const digits = value.replace(/\D/g, "").slice(0, 16);
         return digits.replace(/(.{4})/g, "$1 ").trim();
@@ -131,10 +159,11 @@ function Pagamentos() {
     async function gerarPix() {
         try{
             
+
             const data = await gerarQrCode({
                 valor: pix,
                 descricao: "Compra Arkane",
-                email: "comprador@gmail.com"
+                email: user?.email
             })
 
             setQrCode(data.qr_code)
@@ -151,6 +180,7 @@ function Pagamentos() {
 
     async function pagamentoCartao() {
         
+        const cpfLimpo  = cpfCard.replace(/\D/g, "")
         try{
 
             if (!window.MercadoPago){
@@ -162,30 +192,40 @@ function Pagamentos() {
                 {locale: "pt-BR"})
             const cleaned = validCard.replace(/\s/g, "");
             const [mes, ano] = cleaned.split("/")
+            const anoComleto = `20${ano}`
 
             
             const tokenResponse = await mp.createCardToken({
                 cardNumber: numeroCard.replace(/\s/g, ""),
                 cardholderName: nomeCard,
                 cardExpirationMonth: mes,
-                cardExpirationYear: ano,
+                cardExpirationYear: anoComleto,
                 securityCode: cvcCard,
                 identificationType: "CPF",
-                identificationNumber: "12301234567"
+                identificationNumber: cpfLimpo
             })
 
             const token = tokenResponse.id
-            const email = "cliente@email.com"; 
 
             const data = await creditoDebitoPagamento({
                 token,
-                email: email,
+                email: user?.email,
                 parcelas: 1,
-                bandeiraCartao: "visa",
-                tipo: "credito",
+                payment_method_id: bandeiraCard(numeroCard),
+                descricao: "compra online na useArkane",
+                cpf: cpfLimpo,
                 valor: total
             })
-            console.log(data)
+            
+            if (data.url_autenticacao){
+                window.location.href = data.url_autenticacao
+            }else if (data.status === "Approved"){
+                toast.success("Pagamento aprovado")
+                await finalizarCompra()
+                navigate("/pedidos")
+            }else{
+                toast.error("Pagamento recusado, Verifique os dados do cartao")
+            }
         }catch(err){
             console.log(err)
             toast.error("Erro ao processar pagamento")
@@ -261,10 +301,10 @@ function Pagamentos() {
 
             <div className="btns">
                 <button onClick={() => navigate("/")}>Continuar Comprando</button>
-                <button id="finalizar" onClick={()=> {
-                    verificarUsuario()
-                    finalizarCompra()
-                    gerarPix()
+                <button id="finalizar" onClick={async ()=> {
+                    await verificarUsuario()
+                    await finalizarCompra()
+                    await gerarPix()
                 }
                     }>Finalizar pedido</button>
             </div>
@@ -327,9 +367,9 @@ function Pagamentos() {
             )}
         
             {metodo === "credito" && (
-                
                 <div className="containerCredito">
-                        <div className="inputs">
+                <div className="inputs">
+                    <input maxLength={14} onChange={(e)=> setCpfCard(formataCPF(e.target.value))} value={cpfCard} type="text" placeholder="Digite o CPF do titular"/>
                     <input
                         type="text"
                         maxLength={19}
