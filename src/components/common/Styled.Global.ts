@@ -1114,3 +1114,86 @@ export const ErroAvaliacaoStyled = styled.div`
         }
     }
   `
+
+
+
+export const PedidosStyled =  styled.div`
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.2rem;
+  margin: 1rem 0;
+  background: #ffffffde;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  align-items: center;
+  transition: 0.2s;
+
+  &:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  }
+
+  .imagem img{
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .conteudo{
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  h1{
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #272727;
+  }
+
+  p{
+    font-size: 0.9rem;
+    color: #444;
+  }
+
+  span{
+    font-weight: 600;
+    color: #000;
+  }
+
+  .TCP{
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .infoPedido{
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 0.2rem;
+  }
+
+  .status{
+    margin-left: 6px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+  }
+
+  .aguardando_pagamento{
+    background: #fff4cc;
+    color: #b45309;
+  }
+
+  .pago{
+    background: #dcfce7;
+    color: #166534;
+  }
+
+  .cancelado{
+    background: #fee2e2;
+    color: #991b1b;
+  }
+`

@@ -110,3 +110,5 @@ export type EnviarAvaliçaoDTO = {
     estrelas: number,
     produto_id: number
 }
+
+

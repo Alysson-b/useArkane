@@ -11,6 +11,7 @@ import { Cadastro_completo } from "../components/dadosUsuario/Dados_usuarios";
 import { ListarUsuarios } from "../components/common/ListUsuarios";
 import ListarPedidosUsuarios from "../components/common/ListPedidos";
 import { ProductFilter } from "../components/productCart/ProductsFilter";
+import PedidosUsuarios from "../components/common/pedidosUsuarios";
 
 
 export function AppRoutes(){
@@ -30,6 +31,8 @@ export function AppRoutes(){
                         <Route path="/cadastro" element={<Cadastro_completo/>}/>
                         <Route path="/usuarios" element={<ListarUsuarios/>}/>
                         <Route path="/usuarios/pedidos" element={<ListarPedidosUsuarios/>}/>
+                        <Route path="/meus-pedidos" element={<PedidosUsuarios/>}/>
+
                         
                     </Route>
                 </Routes>

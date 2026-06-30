@@ -43,3 +43,8 @@ export async function verificarPedidos(): Promise<Pedidos_usuarios[]> {
     const {data }= await api.get("/api/users/pedidos")
     return data
 }
+
+export async function buscarMeusPedidos(): Promise<Pedidos_usuarios[]> {
+    const {data} = await api.get("/api/meus-pedidos")
+    return data
+}
